@@ -12,7 +12,7 @@ d_b_choice=1.4; % Blurring diameter for jodefu v2
 im_tag = 'Washington_4'; % Image tag
 output_folder = 'formation_cassi'; % Output folder
 mask_list = 1; % 1 = CASSI
-formation_list = 3; % 3 = Mosaicing
+formation_list = 2; % 2 = Mosaicing
 reconstruction_list = [0, 7]; % 0 = jodefu v1, 7= CASSI decoding
 lambda_v = 0.001:0.001:0.003; % Normalized regularization parameter
     

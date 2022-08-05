@@ -23,9 +23,9 @@ fusion_list={'EXP','GSA','BDSD','ATWT','MTF-GLP-HPM','MTF-GLP-CBD'};
 %fusion_list={'EXP','PCA','GSA','BDSD','ATWT','MTF-GLP-HPM','MTF-GLP-HPM','CNMF','BayesNaive'};
 
 testtype={'default','msonly','nomask'}; % testtype='nodegrad';
+tests_sim = 1; % 1= Non simulated PAN, 2 = PAN simulated from GT (SNR = 25 dB)
 
-for jj=1:2
-
+for jj=tests_sim
 	if jj==1, sim_label=0; SNR_db=[]; end
 	if jj==2, sim_label=1; SNR_db=25; end
 	
