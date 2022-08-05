@@ -1,0 +1,35 @@
+
+                 Shannon Total Variation Based tools for image
+  	               processing in Matlab language
+
+Authors: Rémy Abergel & Lionel Moisan.
+
+This program is freely available on the web page
+
+http://www.math-info.univ-paris5.fr/~rabergel/
+
+We hope that you will find it useful. If you use it for a publication, please
+mention this web page and the paper [1]. If you modify this program, please
+indicate in the code that you did so and leave this message. You can also report
+bugs or suggestions to Remy.Abergel [AT] gmail.com and Lionel.Moisan [AT]
+parisdescartes.fr
+
+[1] R. Abergel and L. Moisan, ``The Shannon Total Variation'', Preprint MAP5,
+2016.
+
+Tutorials:
+----------
+
+Please, follow the script files in the 'examples' folder to get started with the
+provided functions. The example related to the use of the Shannon total
+variation are located into the 'examples/shannon-tv' directory, while that
+related to the use of the usual discrete total variation can be found into the
+'examples/discrete-tv' directory.
+
+Images licenses:
+----------------
+
+All the images provided into the 'data' directory come from the Pixabay image
+library https://pixabay.com/ and are licensed under "CC0 Public Domain" (see
+https://creativecommons.org/licenses/).
+

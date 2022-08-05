@@ -1,0 +1,25 @@
+%% Multiplatform tags
+
+'RdJ_WV3_WV3' 'RdJ_cut2_HYP_ALI' 'RdJ_HYP_WV3' 'RdJ_ALI_ALI'
+'Sydney_WV3_WV3' 'Sydney_HYP_ALI' 'Sydney_HYP_WV3'
+'SaoPaulo_HYP_ALI' 'SaoPaulo_ALI_ALI' 'SaoPaulo_IKONOS_IKONOS' 'SaoPaulo_HYP_IKONOS'
+
+%% Monoplatform tags 
+
+'Janeiro' 'Janeiro_RGB' 'Janeiro_4'
+'Tripoli' 'Tripoli_RGB' 'Tripoli_4'
+'Washington' 'Washington_RGB' 'Washington_cut256'
+'Stockholm' 'Stockholm_RGB' 'Stockholm_4'
+'Beijing_WV3_WV3' 'Beijing_WV3_WV3_RGB';
+'SanFrancisco_QB_QB' 'SanFrancisco_cut2_QB_QB_RGB' 'Sydney_WV3_WV3'
+'SaoPaulo_IKONOS_IKONOS'; 'SaoPaulo_cut2_IKONOS_IKONOS';
+'Moffett' 'Moffett_cut2' 'Moffett_ovlp' 'Moffett_all'
+'Pavia' 'Vancouver'
+'Rome' 'China' 'Pleiades' 'Pleiades_cut2'
+'Toulouse' 'Toulouse_cut2'
+'Indianapolis' 'Indianapolis_cut2'
+'Hobart' 'Hobart_cut2'
+'Sofia' 'Sofia_ALI_ALI' 'Sofia_cut2_ALI_ALI_VNIR'
+'Sudbury' 'Sudbury_ALI_ALI' 'Sofia_cut2_ALI_ALI_VNIR'
+'Fuji' 'Fuji_ALI_ALI' 'Fuji_ALI_ALI_VNIR'
+'Paris' 'Chris'
