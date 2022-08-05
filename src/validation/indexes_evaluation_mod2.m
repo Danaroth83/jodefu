@@ -25,7 +25,7 @@
 function [MatrixResults,qindex_list] = indexes_evaluation_mod2(I_F,I_GT,qindex_list,ratio,L,Q_blocks_size,flag_cut_bounds,dim_cut,th_values)
 
 current_folder=pwd;
-q2nnew_folder=[fileparts(mfilename('fullpath')),'\Q2n_new\'];
+q2nnew_folder=fullfile(fileparts(mfilename('fullpath')),'Q2n_new');
 
 if flag_cut_bounds
     I_GT = I_GT(dim_cut:end-dim_cut,dim_cut:end-dim_cut,:);

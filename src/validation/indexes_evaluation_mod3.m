@@ -26,7 +26,7 @@ function [MatrixResults,qindex_list] = indexes_evaluation_mod3(I_F,GT,varargin)
 
 
 current_folder=pwd;
-q2nnew_folder=[fileparts(mfilename('fullpath')),'\Q2n_new\'];
+q2nnew_folder=fullfile(fileparts(mfilename('fullpath')),'Q2n_new');
 
 
 %% Handling input variables in a single cell
