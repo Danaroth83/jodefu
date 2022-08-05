@@ -87,7 +87,7 @@ original_folder=pwd;
 current_folder=fileparts(mfilename('fullpath'));
 support_folder=fullfile(current_folder,'..');
 fusion_folder=fullfile(support_folder,'Fusion');
-output_folder=fullfile(current_folder,'..','..','output');
+output_folder=fullfile(current_folder,'..','..','data','output');
 
 addpath(fullfile(support_folder,'Load_info'),...
         fullfile(support_folder,'Scaling'),...

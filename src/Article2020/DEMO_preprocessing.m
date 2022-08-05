@@ -2,7 +2,7 @@
 
 clearvars; close all;
 rng('default');  % For reproductible results
-output_folder=fullfile('..','..','output','test_compression');
+output_folder=fullfile('..','..','data','output','test_compression');
 support_folder=fullfile('..','..','support');
 addpath(fullfile(support_folder,'Load_info'));
 addpath(fullfile(support_folder,'Operator'));

@@ -3,8 +3,8 @@ clearvars; close all;
 current_folder=fileparts(mfilename('fullpath'));
 support_folder=fullfile(current_folder,'..','..','support');
 addpath(fullfile(support_folder,'Visualization'));
-input_folder=fullfile(current_folder,'..','..','output','test_compression');
-output_folder=fullfile(current_folder,'..','..','output','figures_PhD');
+input_folder=fullfile(current_folder,'..','..','data','output','test_compression');
+output_folder=fullfile(current_folder,'..','..','data','output','figures_PhD');
 
 % im_tag='Beijing_WV3_WV3_4';
 % im_tag='Hobart';

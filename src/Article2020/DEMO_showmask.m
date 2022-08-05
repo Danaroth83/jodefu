@@ -6,7 +6,7 @@ current_folder=fileparts(mfilename('fullpath'));
 support_folder=fullfile(current_folder,'..','..','support');
 addpath(fullfile(support_folder,'Mosaic'),...
         fullfile(support_folder,'Visualization'));
-output_folder=fullfile(current_folder,'..','..','output','mask_pattern');
+output_folder=fullfile(current_folder,'..','..','data','output','mask_pattern');
     
 mask='mindis';
 

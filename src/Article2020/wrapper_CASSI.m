@@ -29,12 +29,12 @@
 % 'metric': Index of the cell above to decide the best lambda (default: 1)
 % 'vis': If 1, shows images on screen and prints figures (default: 1)
 
-function [I_out,I_acq,mask,MR]=wrapper_compressedacquisition(varargin)
+function [I_out,I_acq,mask,MR]=wrapper_CASSI(varargin)
 
 %% Support folders' paths
 rng('default');  % For reproductible results
 current_folder=fileparts(mfilename('fullpath'));
-output_folder=fullfile(current_folder,'..','..','output','test_compression');
+output_folder=fullfile(current_folder,'..','..','data','output');
 support_folder=fullfile(current_folder,'..','..','support');
 addpath(fullfile(support_folder,'Load_info'),...
         fullfile(support_folder,'Interpolation'),...
@@ -62,6 +62,7 @@ flag_vis=1;
 flag_PANfromGT=0;
 SNR_PANfromGT=[];
 ra=[];
+output_fol = 'test_compression';
 
 
 %% Variables setter
@@ -101,9 +102,12 @@ for ii=1:2:numel(varargin)
         SNR_PANfromGT=pval; 
     elseif any(strcmpi(pname,{'radius','ra','magnify'}))
         ra=pval;
+    elseif any(strcmpi(pname,{'output','folder','output_folder','output_fol'}))
+        output_fol=pval;
     end
 end
 
+output_folder = fullfile(output_folder, output_fol);
 
 %% Load Methods
 if strcmpi(testtype,'msonly')

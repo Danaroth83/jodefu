@@ -34,7 +34,7 @@ function [I_out,I_acq,mask,MR]=wrapper_classic(varargin)
 %% Support folders' paths
 rng('default');  % For reproductible results
 current_folder=fileparts(mfilename('fullpath'));
-output_folder=fullfile(current_folder,'..','..','output');
+output_folder=fullfile(current_folder,'..','..','data','output');
 support_folder=fullfile(current_folder,'..','..','support');
 addpath(fullfile(support_folder,'Load_info'),...
         fullfile(support_folder,'Demosaic'),...

@@ -1,6 +1,6 @@
 clearvars; close all;
 
-output_main=fullfile('..','..','output');
+output_main=fullfile('..','..','data','output');
 output_fol='test_parameters';
 ratio=2;
 Nbiter=250; tol=0; % Nbiter=500; tol=10E-06;

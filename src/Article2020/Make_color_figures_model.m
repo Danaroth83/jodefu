@@ -5,8 +5,8 @@ support_folder=fullfile(current_folder,'..','..','support');
 addpath(fullfile(support_folder,'Visualization'),...
         fullfile(support_folder,'Mosaic'));
 
-input_folder=fullfile(current_folder,'..','..','output','test_compression');
-output_folder=fullfile(current_folder,'..','..','output','figures_PhD','direct');
+input_folder=fullfile(current_folder,'..','..','data','output','test_compression');
+output_folder=fullfile(current_folder,'..','..','data','output','figures_PhD','direct');
 
 mkdir(output_folder);
 im_tag='Beijing_cut256_WV3_WV3_4';

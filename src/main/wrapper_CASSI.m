@@ -29,12 +29,12 @@
 % 'metric': Index of the cell above to decide the best lambda (default: 1)
 % 'vis': If 1, shows images on screen and prints figures (default: 1)
 
-function [I_out,I_acq,mask,MR]=wrapper_compressedacquisition(varargin)
+function [I_out,I_acq,mask,MR]=wrapper_CASSI(varargin)
 
 %% Support folders' paths
 rng('default');  % For reproductible results
 current_folder=fileparts(mfilename('fullpath'));
-output_folder=fullfile(current_folder,'..','..','output','test_compression');
+output_folder=fullfile(current_folder,'..','..','data','output','test_compression');
 support_folder=fullfile(current_folder,'..','..','support');
 addpath(fullfile(support_folder,'Load_info'),...
         fullfile(support_folder,'Interpolation'),...

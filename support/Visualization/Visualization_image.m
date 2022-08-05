@@ -29,7 +29,7 @@ function I_vis_out=Visualization_image(Im_cell,varargin)
 
 %% Definition of folders
 current_folder=fileparts(mfilename('fullpath'));
-output_folder=fullfile(current_folder,'..','..','output');
+output_folder=fullfile(current_folder,'..','..','data','output');
 
 %% Definition of variables
 output_file='output';

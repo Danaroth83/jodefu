@@ -2,7 +2,7 @@ function [I_out, I_GT, MR] = wrapper_software_compression(varargin)
 
 %% Support folders' paths
 current_folder=fileparts(mfilename('fullpath'));
-output_folder=fullfile(current_folder,'..','..','output');
+output_folder=fullfile(current_folder,'..','..','data','output');
 support_folder=fullfile(current_folder,'..','..','support');
 addpath(fullfile(support_folder,'Load_info'),...
         fullfile(support_folder,'Demosaic'),...

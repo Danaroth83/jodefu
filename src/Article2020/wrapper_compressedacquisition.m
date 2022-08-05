@@ -111,7 +111,7 @@ for ii=1:2:numel(varargin)
     end
 end
 
-output_folder=fullfile(current_folder,'..','..','output',output_fol);
+output_folder=fullfile(current_folder,'..','..','data','output',output_fol);
 if iscell(mask_tag), mask_tag_PAN=mask_tag{2}; mask_tag=mask_tag{1}; end
 if isempty(mask_tag_PAN), mask_label=mask_tag; else, mask_label=[mask_tag,'_',mask_tag_PAN]; end
 if ischar(idx_metric), for ii=1:numel(qindex_list), if strcmpi(qindex_list{ii},idx_metric), idx_metric=ii; break; end; end; end
