@@ -1,4 +1,10 @@
 # JoDeFu
 
-Joint Demosaicking and Fusion Project
-Generation of simulated mosaicked images from both high and low resolution images and algorithms the inversion process based on Bayesian approaches, along with comparison tools with literature methods.
+Matlab implementation of the "multiresolution compressed acquisition" (MRCA) image formation and "joint demosaicing and fusion" (JoDeFu) image reconstruction methods.
+
+The code is capable to:
+- model an optical acquisition device based on color filter arrays (CFAs) and/or multiresolution sensors;
+- estimate an image datacube from their acquisition;
+- compare the results of the estimated products with respect to classical demosaicing and sharpening algorithms.
+
+
