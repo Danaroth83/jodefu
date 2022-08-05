@@ -85,13 +85,12 @@ function Fused=Fusion_Algorithms_Pansharpening(Image_MS,Image_PAN,varargin)
 
 original_folder=pwd;
 current_folder=fileparts(mfilename('fullpath'));
-support_folder=fullfile(current_folder,'..');
-fusion_folder=fullfile(support_folder,'Fusion');
+project_folder=fullfile(current_folder,'..');
+fusion_folder=fullfile(project_folder,'fusion');
 output_folder=fullfile(current_folder,'..','..','data','output');
-
-addpath(fullfile(support_folder,'Load_info'),...
-        fullfile(support_folder,'Scaling'),...
-        fullfile(support_folder,'Filtering'));
+addpath(fullfile(project_folder,'load_info'),...
+        fullfile(project_folder,'scale'),...
+        fullfile(project_folder,'filter'));
 
 %% Loading input image and its metadata
 

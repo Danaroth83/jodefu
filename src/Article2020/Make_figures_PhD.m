@@ -1,8 +1,8 @@
 clearvars; close all;
 
 current_folder=fileparts(mfilename('fullpath'));
-support_folder=fullfile(current_folder,'..','..','support');
-addpath(fullfile(support_folder,'Visualization'));
+project_folder=fullfile(current_folder,'..');
+addpath(fullfile(project_folder,'visualization'));
 input_folder=fullfile(current_folder,'..','..','data','output','test_compression');
 output_folder=fullfile(current_folder,'..','..','data','output','figures_PhD');
 

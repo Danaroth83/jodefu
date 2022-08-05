@@ -67,8 +67,8 @@
 function mask=load_mask(varargin)
 
 current_folder=fileparts(mfilename('fullpath'));
-addpath(fullfile(current_folder,'Mask'));
-addpath(fullfile(current_folder,'Operator'));
+addpath(fullfile(current_folder,'mask'));
+addpath(fullfile(current_folder,'operator'));
 
 %% Parsing inputs
 

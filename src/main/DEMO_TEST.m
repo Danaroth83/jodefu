@@ -1,5 +1,8 @@
 clearvars; close all;
 
+current_folder=fileparts(mfilename('fullpath'));
+addpath(fullfile(current_folder,'..','jodefu'));
+
 % im_tag='Washington_cut256_RGB'; mask='CASSI'; alpha=[];
 % im_tag='Janeiro_cut256_RGB'; mask='Bayer'; alpha=[];
 % im_tag='Janeiro_cut256_all'; mask='BinaryTreeU'; alpha=[];

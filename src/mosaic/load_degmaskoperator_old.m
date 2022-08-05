@@ -40,8 +40,8 @@ function Op=load_degmaskoperator(varargin)
 % sizes: sizes of the fused image (needed format: [L1,L2,Nb])
 
 current_folder=fileparts(mfilename('fullpath'));
-addpath(fullfile(current_folder,'Mask'));
-addpath(fullfile(current_folder,'Operator'));
+addpath(fullfile(current_folder,'mask'));
+addpath(fullfile(current_folder,'operator'));
 
 sizes=[];
 mask=[];

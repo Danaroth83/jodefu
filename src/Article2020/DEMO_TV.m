@@ -20,11 +20,11 @@
 %% Adding support path
 
 clearvars; close all;
-support_folder=fullfile('..','..','support');
-addpath(fullfile(support_folder,'Operator'),...
-        fullfile(support_folder,'Quality_indices'),...
-        fullfile(support_folder,'Inversion_Solver'),...
-        fullfile(support_folder,'Visualization'));
+current_folder=fileparts(mfilename('fullpath'));
+project_folder=fullfile(current_folder,'..');
+addpath(fullfile(project_folder,'operator'),...
+        fullfile(project_folder,'inversion_solver'),...
+        fullfile(project_folder,'visualization'));
 
 %% Generation of noisy image
 L=255; % If =1, no normalization

@@ -29,21 +29,20 @@
 % 'metric': Index of the cell above to decide the best lambda (default: 1)
 % 'vis': If 1, shows images on screen and prints figures (default: 1)
 
-function [I_out,I_acq,mask,MR]=wrapper_compressedacquisition(varargin)
+function [I_out,I_acq,mask,MR]=wrapper_cassi(varargin)
 
 %% Support folders' paths
 rng('default');  % For reproductible results
 current_folder=fileparts(mfilename('fullpath'));
-support_folder=fullfile(current_folder,'..','..','support');
-output_folder=fullfile(current_folder,'..','..','data','output');
-addpath(fullfile(support_folder,'Load_info'),...
-        fullfile(support_folder,'Interpolation'),...
-        fullfile(support_folder,'Inversion_solver'),...
-        fullfile(support_folder,'Mosaic'),...
-        fullfile(support_folder,'Operator'),...
-        fullfile(support_folder,'Validation'),...
-        fullfile(support_folder,'Visualization'),...
-        fullfile(support_folder,'Demosaic'));
+output_folder=fullfile(current_folder,'..','..','data','output','test_compression');
+project_folder=fullfile(current_folder,'..');
+addpath(fullfile(project_folder,'load_info'),...
+        fullfile(project_folder,'interpolation'),...
+        fullfile(project_folder,'inversion_solver'),...
+        fullfile(project_folder,'mosaic'),...
+        fullfile(project_folder,'operator'),...
+        fullfile(project_folder,'validation'),...
+        fullfile(project_folder,'visualization'));
 
 %% Default variables
 
@@ -53,10 +52,9 @@ lambda_v=0.01;
 preproc='regrnonneg';
 ratio=[];
 mask_tag='mindis';
-mask_tag_PAN=[];
 alpha=[];
 qindex_list={'SSIM','PSNR','ERGAS','SAM','sCC','UIQI','Q2n'};
-idx_metric=7;
+idx_metric=1;
 inversion='TV';
 Nbiter=1000;
 tol=0;
@@ -64,8 +62,6 @@ flag_vis=1;
 flag_PANfromGT=0;
 SNR_PANfromGT=[];
 ra=[];
-output_fol='test_compression';
-demosaic_list={'WB'};
 
 
 %% Variables setter
@@ -105,19 +101,9 @@ for ii=1:2:numel(varargin)
         SNR_PANfromGT=pval; 
     elseif any(strcmpi(pname,{'radius','ra','magnify'}))
         ra=pval;
-    elseif any(strcmpi(pname,{'output','folder','output_folder','output_fol'}))
-        output_fol=pval;
-    elseif any(strcmpi(pname,{'demosaic_list','demosaic'})) % For mixed methods
-        demosaic_list=pval;
     end
 end
 
-output_folder=fullfile(output_folder, output_fol);
-if iscell(mask_tag), mask_tag_PAN=mask_tag{2}; mask_tag=mask_tag{1}; end
-if isempty(mask_tag_PAN), mask_label=mask_tag; else, mask_label=[mask_tag,'_',mask_tag_PAN]; end
-if ischar(idx_metric), for ii=1:numel(qindex_list), if strcmpi(qindex_list{ii},idx_metric), idx_metric=ii; break; end; end; end
-if ischar(idx_metric) || numel(qindex_list)<idx_metric, idx_metric=1; end
-if ~iscell(demosaic_list), demosaic_list={demosaic_list}; end
 
 %% Load Methods
 if strcmpi(testtype,'msonly')
@@ -129,13 +115,13 @@ elseif strcmpi(testtype,'nodegrad')
     % ratio_mask=ratio; 
     % ratio=1;
     % mask_tag_PAN=[];
-elseif strcmpi(testtype,'nomask') 
-    ra=[];
+elseif strcmpi(testtype,'nomask')
     ratio_mask=ratio;
     mask_tag='none';
     mask_tag_PAN='none';
-else % default and mixed
+else
     ratio_mask=ratio;
+    mask_tag_PAN=[];
 end
 
 %% Load input image
@@ -154,60 +140,33 @@ end
 
 %% Setting Operator for masking operation
 
-mask=load_mask('sizes',I_EXP.size,'type',mask_tag,'mask_PAN',mask_tag_PAN,...
-    'band_HR',I_PAN.size(3),'ratio',ratio_mask,'start_pos',I_EXP.start_pos,...
-    'alpha',alpha);
+mask=load_mask('sizes',I_EXP.size,'type',mask_tag,'mask_PAN',mask_tag_PAN,'band_HR',I_PAN.size(3),'ratio',ratio_mask,'start_pos',I_EXP.start_pos,'alpha',alpha);
 im.HR=I_PAN.data; im.LR=I_EXP.data;
 y=mask.mosaic(im,mask); % Acquisition (NOTE: No pre-processing at all!)
 
 % opA =load_degmaskoperator('lpfilter',I_EXP.KerBlu,'spectralweights',I_EXP.spectralweights,'mask',mask,'flag_fft',0);    
 % y = opA.mosaic(cat(3,I_PAN.data,I_EXP.data)); % Acquisition (NOTE: No pre-processing at all!)
 
-if strcmpi(testtype,'mixed')
-    %% Demosaic + Fusion Procedure
-    I_demo=mask.demosaic(y,mask);
-    I_PAN_demo = interp2D_mosaic(I_demo.image_HR,'mask',I_demo.mask_HR,'method','RBF_spline','nn',100);
-    % demosaic_classic(I_demo.mosaic_HR,I_demo.mask_HR,interpolation); % Some extra fields are not necessary
-    I_MS_demo  = demosaic_classic(I_demo.mosaic_LR,I_demo.mask_LR,demosaic_list,I_MS_LR.DynamicRange,I_MS_LR.wavelength);
-    [~,~,MR_MS_idx]= indexes_evaluation_RR(I_MS_demo.data,I_MS_LR.data,'qindex_list',qindex_list(idx_metric),'ratio',ratio);
-    [~,idx_best_MS]=min(MR_MS_idx);
-    demosaic_best=demosaic_list{idx_best_MS};
-    I_MS_demo=I_MS_demo.data(:,:,:,idx_best_MS);
-    I_EXP_demo=scale_image(I_MS_demo,ratio,0,[]);
-    
-    mask=load_mask('sizes',I_EXP.size,'type','none','mask_PAN','none',...
-    'band_HR',I_PAN.size(3),'ratio',ratio,'start_pos',I_EXP.start_pos,...
-    'alpha',alpha);
-    im.HR=I_PAN_demo; im.LR=I_EXP_demo;
-    y=mask.mosaic(im,mask);
-else
-    demosaic_best=[];
-end
-
-
 %% Estimation of the HR image degradation model
-if ~strcmpi(preproc,'none') && ~strcmpi(preproc,'histavg') && ~strcmpi(preproc,'avg')
-    I_demo = mask.demosaic(y,mask);
-    I_EXP_WB=interp2D_mosaic(I_demo.image_EXP,'mask',I_demo.mask_EXP,'method','WB','nn',100);
-    %I_EXP_demo  = demosaic_classic(I_demo.image_EXP,I_demo.mask_EXP,'WB'); I_EXP_WB=I_EXP_demo.data;
-    %I_EXP_WB=interp2D_mosaic(I_demo.image_EXP,'mask',I_demo.mask_EXP,'method','RBF_spline','nn',100);
+I_demo = mask.demosaic(y,mask);
 
-    if strcmpi(testtype,'msonly')
-        I_PAN_WB=[];
-        I_PAN_LR=[];
-        I_PAN_temp=permute(sum(I_EXP_WB.*shiftdim(I_EXP.spectralweights,-2),3),[1,2,4,3]);
-        std_PAN=std(I_PAN_temp,0,1:2);
-        mean_PAN=mean(I_PAN_temp,1:2);
-    else
-        I_PAN_WB=interp2D_mosaic(I_demo.image_HR,'mask',I_demo.mask_HR,'method','WB','nn',100);
-        % I_PAN_WB=interp2D_mosaic(I_demo.image_HR,'mask',I_demo.mask_HR,'method','RBF_spline','nn',100);
-        % I_PAN_demo=demosaic_classic(I_demo.mosaic_HR,I_demo.mask_HR,'WB'); I_PAN_WB=I_PAN_demo.data;
-        I_PAN_LR=imresize(imresize(I_PAN_WB,1/ratio),ratio);
-        std_PAN=std(I_PAN_WB,0,1:3);
-        mean_PAN=mean(I_PAN_WB,1:2);
-    end
+I_EXP_WB=interp2D_mosaic(I_demo.image_EXP,'mask',I_demo.mask_EXP,'method','WB','nn',100);
+%I_EXP_demo  = demosaic_classic(I_demo.image_EXP,I_demo.mask_EXP,'WB'); I_EXP_WB=I_EXP_demo.data;
+
+if strcmpi(testtype,'msonly')
+    I_PAN_WB=[];
+    I_PAN_LR=[];
+    I_PAN_temp=permute(sum(I_EXP_WB.*shiftdim(I_EXP.spectralweights,-2),3),[1,2,4,3]);
+    std_PAN=std(I_PAN_temp,0,1:3);
+    mean_PAN=mean(I_PAN_temp,1:2);
+else
+    I_PAN_WB=interp2D_mosaic(I_demo.image_HR,'mask',I_demo.mask_HR,'method','WB','nn',100);
+    % I_PAN_demo=demosaic_classic(I_demo.mosaic_HR,I_demo.mask_HR,'WB'); I_PAN_WB=I_PAN_demo.data;
+    I_PAN_LR=imresize(imresize(I_PAN_WB,1/ratio),ratio);
+    std_PAN=std(I_PAN_WB,0,1:3);
+    mean_PAN=mean(I_PAN_WB,1:2);
 end
-    
+
 if strncmpi(preproc,'regr',4)
     I_EXP_norm=(I_EXP_WB-mean(I_EXP_WB,1:2))./std(I_EXP_WB,0,1:2).*std_PAN+mean_PAN;
     I_PAN_norm=I_PAN_WB;
@@ -217,7 +176,7 @@ if strncmpi(preproc,'regr',4)
         if strcmpi(preproc,'regrnonneg'), weights(:,kk)=lsqnonneg(reshape(I_EXP_WB,[],size(I_EXP_WB,3)),reshape(I_PAN_LR(:,:,kk),[],1)); end
         if strcmpi(preproc,'regrsum1')
             weights(:,kk) = lsqlin(reshape(I_EXP_WB,[],size(I_EXP_WB,3)),...
-                reshape(I_PAN_LR(:,:,kk),[],1),[],[],ones(1,size(I_EXP_WB,3)),1,0,[]);
+                reshape(I_PAN_LR(:,:,kk),[],1),[],[],ones(size(I_EXP_WB,3)),1,0,[]);
         end
         if strcmpi(preproc,'regravg'), weights(:,kk)=1/size(I_EXP_WB,3); end
     end
@@ -227,31 +186,9 @@ elseif strcmpi(preproc,'hism')
     I_PAN_norm=I_PAN_WB;
     weights=I_PAN.spectralweights;
     max_value=I_PAN.DynamicRange;
-elseif strcmpi(preproc,'Duran')
-    I_EXP_norm=(I_EXP_WB-mean(I_EXP_WB,1:2))./std(I_EXP_WB,0,1:2).*std_PAN+mean_PAN;
-    I_PAN_norm=I_PAN_WB;
-    if size(I_EXP_WB,3)==4, weights=[0.1,0.4,0.25,0.25]; 
-    elseif size(I_EXP_WB,3)==3, weights=[0.1,0.4,0.25,0.25]; weights=weights(1:3); weights=weights/sum(weights); 
-    else, weights=I_PAN.spectralweights; 
-    end
-    max_value=I_PAN.DynamicRange;
-elseif strcmpi(preproc,'histavg')
-    I_PAN_norm=I_PAN.data;
-    I_PAN_LR=imresize(imresize(I_PAN_norm,1/ratio),ratio);
-    std_PAN=std(I_PAN_LR,0,1:2);
-    mean_PAN=mean(I_PAN.data,1:2);
-    I_EXP_WB=I_EXP.data;
-    I_EXP_norm=(I_EXP.data-mean(I_EXP.data,1:2))./std(I_EXP.data,0,1:2).*std_PAN+mean_PAN;
-    weights=1/size(I_EXP_norm,3)*ones(size(I_EXP_norm,3),size(I_PAN_norm,3));
-    max_value=I_PAN.DynamicRange;
-elseif strcmpi(preproc,'avg')
-    I_EXP_norm=I_EXP.data;
-    I_PAN_norm=I_PAN.data;
-    weights=1/size(I_EXP_norm,3)*ones(size(I_EXP_norm,3),size(I_PAN_norm,3));
-    max_value=I_EXP.DynamicRange;    
 elseif strcmpi(preproc,'none')
-    I_EXP_norm=I_EXP.data;
-    I_PAN_norm=I_PAN.data;
+    I_EXP_norm=I_EXP_WB;
+    I_PAN_norm=I_PAN_WB;
     weights=I_PAN.spectralweights;
     max_value=I_EXP.DynamicRange;
 end
@@ -262,8 +199,9 @@ for ii=1:length(weights), fprintf(' %.4f',weights(ii)); end; fprintf('\n');
 % I_EXP_norm=(I_EXP_WB-subtract_MS)./divide_MS;
 % I_PAN_norm=(I_PAN_WB-subtract_PAN)./divide_PAN;
 opA =load_degmaskoperator('lpfilter',I_EXP.KerBlu,'spectralweights',weights,...
-    'mask',mask,'flag_fft',0,'radius',ra); 
-y_norm=opA.mosaic(cat(3,I_PAN_norm,I_EXP_norm));
+    'mask',mask,'flag_fft',0,'radius',ra);
+
+y=opA.mosaic(cat(3,I_PAN_norm,I_EXP_norm));
 
 %% Other operators
 if iscell(inversion)
@@ -297,7 +235,7 @@ rho=1.9;
     'init',opA.adjoint(y_norm),'Nbiter',Nbiter,'tol',tol);
 
 % Recover moments
-if ~any(strcmpi(preproc,{'none'})) && ~any(strcmpi(preproc,{'avg'}))
+if ~any(strcmpi(preproc,{'none'}))
     x_lambda=(x_lambda-mean_PAN)./std_PAN.*std(I_EXP_WB,0,1:2)+mean(I_EXP_WB,1:2);
     % x_lambda=(x_lambda.*divide_MS)+subtract_MS;
 end
@@ -311,8 +249,7 @@ if isempty(ra), ra=1; end
 
 output_folder=fullfile(output_folder,im_tag);
 mkdir(output_folder);
-if isempty(alpha), alpha_string=[]; else, alpha_string=sprintf('_a%d',round(10*alpha)); end
-filename=sprintf('%s_r%d_%s_%s%s_%s_%s_m%d_i%d_%s_%s',im_tag,ratio,sim_string,mask_label,alpha_string,testtype,preproc,round((ra-1)*10),Nbiter,opL_tag,opg_tag);
+filename=sprintf('%s_r%d_%s_%s_%s_%s_m%d_%s_%s',im_tag,ratio,sim_string,mask_tag,testtype,preproc,round((ra-1)*10),opL_tag,opg_tag);
 
 MR_label=cell(1,size(MR_out,2)); for ii=1:size(MR_out,2), MR_label{ii}=sprintf('lambda= %.2E',lambda_v(ii)); end
 matrix2latex(MR_out.','filename',fullfile(output_folder,[filename,'.tex']),...
@@ -327,7 +264,7 @@ fprintf('Mean of GT: %.4f, Mean of Result: %.4f\n',mean(I_EXP.data(:)),mean(resh
 if flag_vis==1
     fig_idx=1; fig_idx2=2;
     figure(fig_idx2); imshow(1,[]); hold off;
-    if ~strcmpi(testtype,'nomask') && ~strcmpi(testtype,'mixed')
+    if ~strcmpi(testtype,'nomask')
         a=visualize_mask(mask,0); figure(fig_idx2); imshow(a,[],'Border','tight'); title('MASK'); imwrite(a,fullfile(output_folder,[filename,'_MASK.png']));
         figure(fig_idx); subplot(244); a=viewimage_outputonly(y);  imshow(a,[],'Border','tight'); title('Acquisition'); imwrite(a,fullfile(output_folder,[filename,'_COMP.png']));
     end
@@ -342,11 +279,9 @@ if flag_vis==1
     figure(fig_idx); subplot(247); a=viewimage_outputonly(x_lambda(:,:,I_MS_LR.Bands_to_display,idx_lambda)); imshow(a,[],'Border','tight'); title(sprintf('Best (\\lambda=%.2E)',lambda_v(idx_lambda))); imwrite(a,fullfile(output_folder,[filename,'_INVBEST.png']));
     figure(fig_idx); subplot(248); a=viewimage_outputonly(x_lambda(:,:,I_MS_LR.Bands_to_display,end)); imshow(a,[],'Border','tight'); title(sprintf('Maximum (\\lambda=%.2E)',lambda_v(end))); imwrite(a,fullfile(output_folder,[filename,'_INVMAX.png']));
     
-    if numel(lambda_v)>1
-        figure; hold off; title(sprintf('%s Evaluation',qi_label{idx_metric}));
-        ylabel('Value'); xlabel('Regularization parameter (\lambda)');
-        plot(lambda_v,MR_out(idx_metric,:));
-    end
+    figure; hold off; title(sprintf('%s Evaluation',qi_label{idx_metric}));
+    ylabel('Value'); xlabel('Regularization parameter (\lambda)');
+    plot(lambda_v,MR_out(idx_metric,:));
     drawnow;
 end
 
@@ -363,11 +298,10 @@ I_out.spectralweights=I_EXP.spectralweights;
 I_out.KerBlu=I_EXP.KerBlu;
 I_out.lambda=lambda_v;
 I_out.iterations=Nbiter;
-I_out.mask={mask_tag,mask_tag_PAN};
+I_out.mask=mask_tag;
 I_out.maskalpha=alpha;
 I_out.cost=cost_temp;
 I_out.magnifyradius=ra;
-I_out.demosaic_mixed=demosaic_best;
 
 I_acq=I_GT;
 I_acq.data=y;

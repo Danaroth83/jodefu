@@ -57,16 +57,15 @@
 
 % Other option described below 
 
-function I_req=load_dataset_pansharpening_simple(im_tag,varargin)
+function I_req=load_dataset_pansharpening(im_tag,varargin)
 
 disp('Reading dataset...');
 
 current_folder = fileparts(mfilename('fullpath'));
-support_folder = fullfile(current_folder,'..');
+project_folder = fullfile(current_folder,'..');
 data_folder    = fullfile(current_folder,'..','..','data','raw');
-
-addpath(fullfile(support_folder,'Scaling'),...
-        fullfile(support_folder,'Filtering'));
+addpath(fullfile(project_folder,'scale'),...
+        fullfile(project_folder,'filter'));
 
 %% Note: the variable ratio is the desired ratio between the high and low resolution image after processing, not the actual one
 
@@ -157,7 +156,6 @@ Band_overlap_PAN=load_Band_overlap(sensor,sensor_PAN,'HS','PAN');
 Band_overlap_PAN=unique(find(ismember(Bands_to_sharpen,Band_overlap_PAN)));
 if flag_loaddefaultratio==1, ratio=ratio_PAN; end
 
-edge_cut = 0; edge_cut_PAN = 0;
 %% Load dataset
 % load(fullfile(data_folder,'..','Pansharpening',[place,'.mat']),'I_MS','I_PAN');
 load(fullfile(data_folder,[place,'.mat']),'I_MS','I_PAN');

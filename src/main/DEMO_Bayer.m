@@ -1,5 +1,8 @@
 clearvars; close all;
 
+current_folder=fileparts(mfilename('fullpath'));
+addpath(fullfile(current_folder,'..','jodefu'));
+
 % im_tag='Washington_cut256_4'; mask='period'; demosaic_list={'WB','ID','IID','SD','ISD'};
 % im_tag='Washington_cut256_RGB'; mask='Bayer'; demosaic_list={'WB','ID','IID','ARI2','MLRI2','AP','MSG'};
 % im_tag='Janeiro_cut256_RGB'; mask='Bayer'; demosaic_list={'WB','ID','IID','ARI2','MLRI2','AP','MSG'};

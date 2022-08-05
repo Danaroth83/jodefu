@@ -1,9 +1,10 @@
 clearvars; close all;
 
-support_folder='../../support';
-addpath([support_folder,'/Load_info/'],...
-        [support_folder,'/Scaling/'],...
-        [support_folder,'/Visualization/']);
+current_folder=fileparts(mfilename('fullpath'));
+project_folder=fullfile(current_folder,'..');
+addpath(fullfile(project_folder,'load_info'),...
+        fullfile(project_folder,'scale'),...
+        fullfile(project_folder,'visualization'));
 
 %% TAGS FOR MULTIPLATFORM PANSHARPENING    
 

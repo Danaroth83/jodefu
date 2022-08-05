@@ -2,14 +2,15 @@
 
 clearvars; close all;
 rng('default');  % For reproductible results
-support_folder=fullfile('..','..','support');
-output_folder=fullfile('..','..','data','output','test_compression');
-addpath(fullfile(support_folder,'Load_info'));
-addpath(fullfile(support_folder,'Operator'));
-addpath(fullfile(support_folder,'Quality_indices'));
-addpath(fullfile(support_folder,'Inversion_solver'));
-addpath(fullfile(support_folder,'Mosaic'));
-addpath(fullfile(support_folder,'Visualization'));
+current_folder=fileparts(mfilename('fullpath'));
+project_folder=fullfile(current_folder,'..');
+output_folder=fullfile(current_folder,'..','..','data','output','test_compression');
+addpath(fullfile(project_folder,'load_info'));
+addpath(fullfile(project_folder,'operator'));
+addpath(fullfile(project_folder,'quality_indices'));
+addpath(fullfile(project_folder,'inversion_solver'));
+addpath(fullfile(project_folder,'mosaic'));
+addpath(fullfile(project_folder,'visualization'));
 
 
 %% Loading Image and Generating Acquisition

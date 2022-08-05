@@ -22,11 +22,12 @@
 
 clearvars; close all;
 rng('default');  % For reproductible results
-support_folder=fullfile('..','..','support');
-addpath(fullfile(support_folder,'Operator'));
-addpath(fullfile(support_folder,'Quality_indices'));
-addpath(fullfile(support_folder,'Inversion_solver'));
-addpath(fullfile(support_folder,'Mosaic'));
+current_folder=fileparts(mfilename('fullpath'));
+project_folder=fullfile(current_folder,'..');
+addpath(fullfile(project_folder,'operator'));
+addpath(fullfile(project_folder,'quality_indices'));
+addpath(fullfile(project_folder,'inversion_solver'));
+addpath(fullfile(project_folder,'mosaic'));
 
 
 %% Loading Image and Generating Acquisition

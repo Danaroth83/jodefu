@@ -3,9 +3,9 @@
 rng('default');  % For reproductible results
 
 current_folder=fileparts(mfilename('fullpath'));
-support_folder=fullfile(current_folder,'..','..','support');
-addpath(fullfile(support_folder,'Mosaic'),...
-        fullfile(support_folder,'Visualization'));
+project_folder=fullfile(current_folder,'..');
+addpath(fullfile(project_folder,'mosaic'),...
+        fullfile(project_folder,'visualization'));
 output_folder=fullfile(current_folder,'..','..','data','output','mask_pattern');
     
 mask='mindis';

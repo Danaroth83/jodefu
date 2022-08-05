@@ -2,14 +2,14 @@
 
 clearvars; close all;
 rng('default');  % For reproductible results
-output_folder=fullfile('..','..','data','output','test_compression');
-support_folder=fullfile('..','..','support');
-addpath(fullfile(support_folder,'Load_info'));
-addpath(fullfile(support_folder,'Operator'));
-addpath(fullfile(support_folder,'Quality_indices'));
-addpath(fullfile(support_folder,'Inversion_solver'));
-addpath(fullfile(support_folder,'Mosaic'));
-addpath(fullfile(support_folder,'Visualization'));
+current_folder=fileparts(mfilename('fullpath'));
+output_folder=fullfile(current_folder,'..','..','data','output','test_compression');
+project_folder=fullfile(current_folder,'..');
+addpath(fullfile(project_folder,'load_info'));
+addpath(fullfile(project_folder,'operator'));
+addpath(fullfile(project_folder,'inversion_solver'));
+addpath(fullfile(project_folder,'mosaic'));
+addpath(fullfile(project_folder,'visualization'));
 
 %% Parameters
 % preproc='none'; 
@@ -39,7 +39,7 @@ elseif strcmpi(preproc,'hism')
     im=cat(3,I_PAN.data/I_PAN.DynamicRange,I_EXP.data/I_EXP.DynamicRange);
     max_value=1; % max_value=I_load{3}.DynamicRange; % If not normalized
 elseif strcmpi(preproc,'regr')
-    addpath(fullfile(support_folder,'Filtering'));
+    addpath(fullfile(project_folder,'filter'));
     I_PAN_LR=imresize(imresize(I_PAN.data,1/ratio),ratio);
     weights=estimation_alpha2(I_EXP.data,I_PAN_LR,'global');
     fprintf('Regression Weights:');for ii=1:length(weights), fprintf(' %.4f',weights(ii)); end; fprintf('\n');
@@ -48,7 +48,7 @@ elseif strcmpi(preproc,'regr')
     im=cat(3,I_PAN.data/I_PAN.DynamicRange,I_EXP.data/I_EXP.DynamicRange);
     max_value=1; % max_value=I_load{3}.DynamicRange; % If not normalized
 elseif strcmpi(preproc,'regrnobias')
-    addpath(fullfile(support_folder,'Filtering'));
+    addpath(fullfile(project_folder,'filter'));
     I_PAN_LR=imresize(imresize(I_PAN.data,1/ratio),ratio);
     weights=estimation_alpha(I_EXP.data,I_PAN_LR,'global');
     fprintf('Regression Weights:');for ii=1:length(weights), fprintf(' %.4f',weights(ii)); end; fprintf('\n');
@@ -56,7 +56,7 @@ elseif strcmpi(preproc,'regrnobias')
     im=cat(3,I_PAN.data/I_PAN.DynamicRange,I_EXP.data/I_EXP.DynamicRange);
     max_value=1; % max_value=I_load{3}.DynamicRange; % If not normalized
 elseif strcmpi(preproc,'regrnonneg')
-    addpath(fullfile(support_folder,'Filtering'));
+    addpath(fullfile(project_folder,'filter'));
     I_PAN_LR=imresize(imresize(I_PAN.data,1/ratio),ratio);
     weights = lsqnonneg(reshape(I_EXP.data,[],I_EXP.size(3)),I_PAN_LR(:));
     fprintf('Regression Weights:');for ii=1:length(weights), fprintf(' %.4f',weights(ii)); end; fprintf('\n');

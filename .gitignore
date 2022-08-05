@@ -1,15 +1,12 @@
 # Ignore data and output folders
-support/Fusion/BlindFuse-master/*.mat
-support/Fusion/bayesfusion/*.mat
+src/support/Fusion/BlindFuse-master/*.mat
+src/support/Fusion/bayesfusion/*.mat
 
 projects/*
 !projects/main
 
-data/*
-!data/raw
-!data/relative_spectral_responses
-
-output/*
+data/output/*
+!data/output/.gitkeep
 
 # Ignore images
 *.j2k
