@@ -38,7 +38,7 @@ for ii=1:2:numel(varargin)
     end
 end
 output_folder = fullfile(output_folder, output_fol);
-I_load=load_dataset_pansharpening_simple(im_tag,'request',{'GT'});
+I_load=load_dataset_pansharpening(im_tag,'request',{'GT'});
 I_GT = I_load{1};
 
 reference = I_GT.data;

@@ -147,7 +147,7 @@ sensor_HS_list={'HYP','AVIRIS','CHR','ROSIS'};
 
 [place,cut,Bands,sensor,sensor_PAN]=parse_im_tag(im_tag);
 % type='HS';
-[vcut,hcut,edge_cut,edge_cut_PAN,Qblocks_size]=load_cut_simple(place,cut,sensor,sensor_PAN,'PAN');
+[vcut,hcut,edge_cut,edge_cut_PAN,Qblocks_size]=load_cut_simple(place,cut);
 [Bands_to_sharpen,Bands_to_display]=load_Bands_to_sharpen(sensor,Bands,place);
 [~,Bands_to_display]=min(abs(repmat(Bands_to_sharpen',[1,3])-repmat(Bands_to_display,[length(Bands_to_sharpen),1])),[],1);
 [GSD_GT,L]=load_resolution(sensor, im_tag, 'MS');

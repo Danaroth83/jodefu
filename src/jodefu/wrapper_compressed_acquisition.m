@@ -29,7 +29,7 @@
 % 'metric': Index of the cell above to decide the best lambda (default: 1)
 % 'vis': If 1, shows images on screen and prints figures (default: 1)
 
-function [I_out,I_acq,mask,MR]=wrapper_compressedacquisition(varargin)
+function [I_out,I_acq,mask,MR]=wrapper_compressed_acquisition(varargin)
 
 %% Support folders' paths
 rng('default');  % For reproductible results
@@ -139,7 +139,7 @@ else % default and mixed
 end
 
 %% Load input image
-I_load=load_dataset_pansharpening_simple(im_tag,'request',{'MS_LR','PAN','EXP','GT'},...
+I_load=load_dataset_pansharpening(im_tag,'request',{'MS_LR','PAN','EXP','GT'},...
 'ratio',ratio,'flag_PANfromGT',flag_PANfromGT,'SNR_PANfromGT',SNR_PANfromGT);
 I_MS_LR=I_load{1}; I_PAN=I_load{2}; I_EXP=I_load{3}; I_GT=I_load{4};
 ratio=I_PAN.ratio;
