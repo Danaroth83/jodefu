@@ -90,7 +90,8 @@ fusion_folder=fullfile(project_folder,'fusion');
 output_folder=fullfile(current_folder,'..','..','data','output');
 addpath(fullfile(project_folder,'load_info'),...
         fullfile(project_folder,'scale'),...
-        fullfile(project_folder,'filter'));
+        fullfile(project_folder,'filter'),...
+        fullfile(project_folder,'Matlab_toolboxes'));
 
 %% Loading input image and its metadata
 

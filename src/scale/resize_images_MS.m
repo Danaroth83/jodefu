@@ -26,6 +26,10 @@
 
 function [I_MS_LR] = resize_images_MS(I_MS,ratio,GNyq,flag_imresize,flag_decimate,flag_disalign)
 
+current_folder=fileparts(mfilename('fullpath'));
+project_folder=fullfile(current_folder,'..');
+addpath(fullfile(project_folder,'Matlab_toolboxes'));
+
 if numel(ratio)==1, ratio=[ratio,ratio]; end
 if nargin<=2 || isempty(GNyq), GNyq=0.29 .* ones(1,size(I_MS,3)); end
 if nargin<=3, flag_imresize=0; end

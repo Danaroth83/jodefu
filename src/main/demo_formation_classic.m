@@ -3,7 +3,7 @@ clearvars; close all;
 current_folder=fileparts(mfilename('fullpath'));
 addpath(fullfile(current_folder,'..','jodefu'));
 
-output_folder = "formation_classic";
+output_folder = 'formation_classic';
 
 % im_tag='Washington_cut256_4'; mask='period'; demosaic_list={'WB','ID','IID','SD','ISD'};
 % im_tag='Washington_cut256_RGB'; mask='Bayer'; demosaic_list={'WB','ID','IID','ARI2','MLRI2','AP','MSG'};
@@ -16,7 +16,7 @@ im_tag='Washington_4'; mask='BinaryTreeU'; demosaic_list={'WB','ID','IID','SD','
 
 ratio=2;
 
-interpolation='RBF_spline';   % interpolation='WB';
+interpolation='RBF_spline';    % interpolation='WB';
 
 % fusion_list={'EXP','GSA','BDSD','ATWT','MTF-GLP-HPM','MTF-GLP-CBD','BayesNaive'};
 fusion_list={'EXP','GSA','BDSD','ATWT','MTF-GLP-HPM','MTF-GLP-CBD'};

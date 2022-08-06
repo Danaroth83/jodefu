@@ -27,7 +27,8 @@
 %                       IEEE Transaction on Geoscience and Remote Sensing, 2014. (Accepted)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function I_Fus_MTF_GLP_HPM = MTF_GLP_HPM_mod(I_PAN,I_MS,GNyq,ratio)
+function I_Fus_MTF_GLP_HPM = MTF_GLP_HPM_mod_old(I_PAN,I_MS,GNyq,ratio)
+
 % keyboard
 imageHR = double(I_PAN);
 I_MS = double(I_MS);

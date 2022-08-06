@@ -28,6 +28,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function I_Fus_MTF_GLP_HPM = MTF_GLP_HPM2(I_PAN,I_MS,sensor,tag,ratio)
+
 % keyboard
 
 % maxI_MS=max(I_MS(:));

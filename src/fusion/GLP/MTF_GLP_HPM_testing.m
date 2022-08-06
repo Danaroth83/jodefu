@@ -28,6 +28,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function [I_Fus_MTF_GLP_HPM,g,g_opt] = MTF_GLP_HPM_testing(I_PAN,I_MS,GNyq,ratio,I_GT)
+
 % keyboard
 imageHR = double(I_PAN);
 I_MS = double(I_MS);

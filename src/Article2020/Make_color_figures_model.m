@@ -3,7 +3,8 @@ clearvars; close all;
 current_folder=fileparts(mfilename('fullpath'));
 project_folder=fullfile(current_folder,'..');
 addpath(fullfile(project_folder,'visualization'),...
-        fullfile(project_folder,'mosaic'));
+        fullfile(project_folder,'mosaic'),...
+        fullfile(project_folder,'Matlab_toolboxes'));
 
 input_folder=fullfile(current_folder,'..','..','data','output','test_compression');
 output_folder=fullfile(current_folder,'..','..','data','output','figures_PhD','direct');

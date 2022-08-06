@@ -32,7 +32,6 @@
 function [I_out,I_acq,mask,MR]=wrapper_classic(varargin)
 
 %% Support folders' paths
-rng('default');  % For reproductible results
 current_folder=fileparts(mfilename('fullpath'));
 output_folder=fullfile(current_folder,'..','..','data','output');
 project_folder=fullfile(current_folder,'..');
@@ -42,10 +41,12 @@ addpath(fullfile(project_folder,'load_info'),...
         fullfile(project_folder,'interpolation'),...
         fullfile(project_folder,'mosaic'),...
         fullfile(project_folder,'validation'),...
-        fullfile(project_folder,'visualization'));
+        fullfile(project_folder,'visualization'), ...
+        fullfile(project_folder,'Matlab_toolboxes'));
 
+rng(0);  % For reproductible results
+    
 %% Default variables
-
 im_tag='Washington_cut256_RGB';
 ratio=[];
 mask_tag='Bayer';

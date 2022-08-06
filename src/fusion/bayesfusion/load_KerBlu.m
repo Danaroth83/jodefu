@@ -1,4 +1,5 @@
 function [ KerBlu, start_pos ] = load_KerBlu( im_tag, ratio, GNyq_MS, maxlength )
+
 %LOAD_KERBLU Loads Blurring Filter and alignment
 if nargin<=3
     maxlength=41;

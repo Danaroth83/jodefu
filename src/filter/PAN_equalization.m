@@ -2,8 +2,10 @@ function [ I_PAN_LR, I_PAN_eq ] = PAN_equalization( I_PAN, I_MS, flag_degradatio
 %PAN_EQUALIZATION Summary of this function goes here
 %   Detailed explanation goes here
 
-current_folder=fileparts(mfilename('fullpath'));
-addpath(fullfile(current_folder,'..','scale'));
+current_folder = fileparts(mfilename('fullpath'));
+project_folder = fullfile(current_folder, '..');
+addpath(fullfile(project_folder,'scale'),...
+        fullfile(project_folder,'Matlab_toolboxes'));
 
 if nargin<=2, flag_degradation=0; end
 if nargin<=3, flag_equalization=flag_degradation; end

@@ -27,6 +27,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [I_MS_LR, I_PAN_LR] = resize_images_mod(I_MS,I_PAN,ratio,sensor_MS,sensor_PAN,Band_selection)
 
+current_folder=fileparts(mfilename('fullpath'));
+project_folder=fullfile(current_folder,'..');
+addpath(fullfile(project_folder,'Matlab_toolboxes'));
+
 if nargin<5
     sensor_PAN=sensor_MS;
 end

@@ -24,6 +24,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [I_PAN_LR] = resize_images_PAN(I_PAN,ratio,GNyqPan,flag_imresize, flag_decimate)
 
+current_folder=fileparts(mfilename('fullpath'));
+project_folder=fullfile(current_folder,'..');
+addpath(fullfile(project_folder,'Matlab_toolboxes'));
+
 if nargin<=4, flag_decimate=1; end
 if nargin<=3, flag_imresize=1; end
 if nargin<=2 || isempty(GNyqPan), GNyqPan=0.15; end

@@ -1,6 +1,10 @@
 function [ I_out ] = MTF_filter( I_in,MTF_Nyq,scale,N )
 %MTF_CREATE Creates an MTF filter from the Nyquist Gain
 
+current_folder=fileparts(mfilename('fullpath'));
+project_folder=fullfile(current_folder,'..');
+addpath(fullfile(project_folder,'Matlab_toolboxes'));
+
 if nargin<4
     N=scale*10+1;
     % N=scale*5+1;

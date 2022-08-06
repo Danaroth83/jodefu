@@ -1,5 +1,9 @@
 function h_out=Lpfiltering(GNyq,ratio,N)
 
+current_folder=fileparts(mfilename('fullpath'));
+project_folder=fullfile(current_folder,'..');
+addpath(fullfile(project_folder,'Matlab_toolboxes'));
+
 if nargin<=2, N = 41; end
 if length(ratio)==1, ratio=[ratio,ratio]; end
 fcut = 1 ./ ratio;

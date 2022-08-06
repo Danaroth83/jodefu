@@ -44,6 +44,8 @@ function Op=load_degmaskoperator(varargin)
 current_folder=fileparts(mfilename('fullpath'));
 addpath(fullfile(current_folder,'mask'));
 addpath(fullfile(current_folder,'operator'));
+project_folder = fullfile(current_folder, '..');
+addpath(fullfile(project_folder, 'Matlab_toolboxes'));
 
 sizes=[];
 mask=[];
