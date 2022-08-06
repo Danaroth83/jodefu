@@ -1,7 +1,8 @@
 clearvars; close all;
 
 current_folder=fileparts(mfilename('fullpath'));
-addpath(fullfile(current_folder,'..','jodefu'));
+project_folder=fullfile(current_folder,'..');
+addpath(fullfile(project_folder,'jodefu'));
 
 output_folder = 'formation_classic';
 

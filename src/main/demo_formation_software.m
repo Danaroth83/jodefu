@@ -1,7 +1,8 @@
 close all; clearvars;
 
 current_folder=fileparts(mfilename('fullpath'));
-addpath(fullfile(current_folder,'..','jodefu'));
+project_folder=fullfile(current_folder,'..');
+addpath(fullfile(project_folder,'jodefu'));
 
 im_tag = 'Washington_4';
 compression_ratio = 0.25;
