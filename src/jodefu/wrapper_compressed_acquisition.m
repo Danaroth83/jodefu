@@ -198,20 +198,20 @@ if ~strcmpi(preproc,'none') && ~strcmpi(preproc,'histavg') && ~strcmpi(preproc,'
         I_PAN_WB=[];
         I_PAN_LR=[];
         I_PAN_temp=permute(sum(I_EXP_WB.*shiftdim(I_EXP.spectralweights,-2),3),[1,2,4,3]);
-        std_PAN=std(I_PAN_temp,0,1:2);
+        std_PAN=std_vector(I_PAN_temp,1:2);
         mean_PAN=mean(I_PAN_temp,1:2);
     else
         I_PAN_WB=interp2D_mosaic(I_demo.image_HR,'mask',I_demo.mask_HR,'method','WB','nn',100);
         % I_PAN_WB=interp2D_mosaic(I_demo.image_HR,'mask',I_demo.mask_HR,'method','RBF_spline','nn',100);
         % I_PAN_demo=demosaic_classic(I_demo.mosaic_HR,I_demo.mask_HR,'WB'); I_PAN_WB=I_PAN_demo.data;
         I_PAN_LR=imresize(imresize(I_PAN_WB,1/ratio),ratio);
-        std_PAN=std(I_PAN_WB,0,1:3);
+        std_PAN=std_vector(I_PAN_WB,1:3);
         mean_PAN=mean(I_PAN_WB,1:2);
     end
 end
     
 if strncmpi(preproc,'regr',4)
-    I_EXP_norm=(I_EXP_WB-mean(I_EXP_WB,1:2))./std(I_EXP_WB,0,1:2).*std_PAN+mean_PAN;
+    I_EXP_norm=(I_EXP_WB-mean(I_EXP_WB,1:2))./std_vector(I_EXP_WB,1:2).*std_PAN+mean_PAN;
     I_PAN_norm=I_PAN_WB;
     weights=zeros(size(I_EXP_WB,3),size(I_PAN_WB,3));
     for kk=1:size(I_PAN_WB,3)  
@@ -225,12 +225,12 @@ if strncmpi(preproc,'regr',4)
     end
     max_value=I_PAN.DynamicRange;
 elseif strcmpi(preproc,'hism')
-    I_EXP_norm=(I_EXP_WB-mean(I_EXP_WB,1:2))./std(I_EXP_WB,0,1:2).*std_PAN+mean_PAN;
+    I_EXP_norm=(I_EXP_WB-mean(I_EXP_WB,1:2))./std_vector(I_EXP_WB,1:2).*std_PAN+mean_PAN;
     I_PAN_norm=I_PAN_WB;
     weights=I_PAN.spectralweights;
     max_value=I_PAN.DynamicRange;
 elseif strcmpi(preproc,'Duran')
-    I_EXP_norm=(I_EXP_WB-mean(I_EXP_WB,1:2))./std(I_EXP_WB,0,1:2).*std_PAN+mean_PAN;
+    I_EXP_norm=(I_EXP_WB-mean(I_EXP_WB,1:2))./std_vector(I_EXP_WB,1:2).*std_PAN+mean_PAN;
     I_PAN_norm=I_PAN_WB;
     if size(I_EXP_WB,3)==4, weights=[0.1,0.4,0.25,0.25]; 
     elseif size(I_EXP_WB,3)==3, weights=[0.1,0.4,0.25,0.25]; weights=weights(1:3); weights=weights/sum(weights); 
@@ -240,10 +240,10 @@ elseif strcmpi(preproc,'Duran')
 elseif strcmpi(preproc,'histavg')
     I_PAN_norm=I_PAN.data;
     I_PAN_LR=imresize(imresize(I_PAN_norm,1/ratio),ratio);
-    std_PAN=std(I_PAN_LR,0,1:2);
+    std_PAN=std_vector(I_PAN_LR,1:2);
     mean_PAN=mean(I_PAN.data,1:2);
     I_EXP_WB=I_EXP.data;
-    I_EXP_norm=(I_EXP.data-mean(I_EXP.data,1:2))./std(I_EXP.data,0,1:2).*std_PAN+mean_PAN;
+    I_EXP_norm=(I_EXP.data-mean(I_EXP.data,1:2))./std_vector(I_EXP.data,1:2).*std_PAN+mean_PAN;
     weights=1/size(I_EXP_norm,3)*ones(size(I_EXP_norm,3),size(I_PAN_norm,3));
     max_value=I_PAN.DynamicRange;
 elseif strcmpi(preproc,'avg')
@@ -300,7 +300,7 @@ rho=1.9;
 
 % Recover moments
 if ~any(strcmpi(preproc,{'none'})) && ~any(strcmpi(preproc,{'avg'}))
-    x_lambda=(x_lambda-mean_PAN)./std_PAN.*std(I_EXP_WB,0,1:2)+mean(I_EXP_WB,1:2);
+    x_lambda=(x_lambda-mean_PAN)./std_PAN.*std_vector(I_EXP_WB,1:2)+mean(I_EXP_WB,1:2);
     % x_lambda=(x_lambda.*divide_MS)+subtract_MS;
 end
 
