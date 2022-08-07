@@ -44,3 +44,6 @@ codegen/
 
 # Octave session info
 octave-workspace
+
+# IDEA folder
+.idea
