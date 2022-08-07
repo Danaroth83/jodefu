@@ -37,7 +37,7 @@ for kk=mask_list
             if jj==4, inversion={'TV_u','norm_S1l1','none'}; d_b = d_b_choice; end
             if jj==5, inversion={'TV_s2','norm_l221','none'}; d_b = d_b_choice; end
             if jj==6, inversion={'TV_s2','norm_S1l1','none'}; d_b = d_b_choice; end
-            if jj==7, inversion={'none','norm_l111','CAS8_sym8'}; d_b = d_b_choice; end
+            if jj==7, inversion={'none','norm_l111','CAS_sym8'}; d_b = d_b_choice; end
 
             fprintf('Mask: %s, Testtype: %s, Sim: %d, Parameters setup: %d, Radius: %.2f\n', mask, testtype, sim_string, jj, d_b);
 
