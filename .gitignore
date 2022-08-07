@@ -8,6 +8,7 @@ projects/*
 data/output/*
 !data/output/.gitkeep
 
+
 # Ignore images
 *.j2k
 *.jpeg

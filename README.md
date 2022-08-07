@@ -6,8 +6,10 @@ Implementation in MATLAB of the "multiresolution compressed acquisition" (MRCA) 
 
 The code is able to:
 - model an optical acquisition device based on color filter arrays (CFAs) and/or multiresolution sensors;
-- estimate an image datacube from their acquisition;
+- reconstruct an image datacube from their acquisition;
 - compare the results of the estimated products with respect to classical demosaicing and sharpening algorithms.
+
+data/output/
 
 ## Getting started
 
@@ -24,19 +26,19 @@ The provided scripts were tested on a licensed **MATLAB 2018b** version on a mac
 
 The repository contains demo scripts for the experiments provided in the associated article, which, for the user convenience, are all located in the `src\main` folder and the results are saved in the `data\output` folder. Specifically we provide:
 - **Image formation**: Scripts which test the quality of image reconstructed starting from acquisitions modeled through a variety of image formation methods:
-  - `demo_formation_mrca.m`:  Reconstructed through the JoDeFu v1 algorithm;
-  - `demo_formation_classic.m`:  Reconstructed with classic noniterative algorithms;
-  - `demo_formation_cassi.m`: Reconstructed from CASSI acquisitions both with the CASSI decoder and JoDeFu v1;
-  - `demo_formation_software.m`: Obtained with software compression encoder/decoders.
+  - `demo_formation_mrca.m`:  reconstructed through the JoDeFu v1 algorithm;
+  - `demo_formation_classic.m`:  reconstructed with classic noniterative algorithms;
+  - `demo_formation_cassi.m`: reconstructed from CASSI acquisitions both with the CASSI decoder and JoDeFu v1;
+  - `demo_formation_software.m`: obtained with software compression encoders/decoders.
 - **Image reconstruction**: Scripts testing various reconstruction algorithm processing a MRCA acquisition:
-  - `demo_reconstruction_jodefu.m`: Reconstructed through JoDeFu v1 and v2.
-  - `demo_reconstruction_classic.m`: Reconstructed through cascaded classic demosaicing and sharpening algorithms;
+  - `demo_reconstruction_jodefu.m`: reconstructed through JoDeFu v1 and v2.
+  - `demo_reconstruction_classic.m`: reconstructed through cascaded classic demosaicing and sharpening algorithms;
 - **Parameters' setting**: Scripts testing the settings of the JoDeFu algorithm:
-  - `demo_parameters.m`: By varying the regularization parameter, the metric function norm, the total variation linear operator and the blurring diameter.
+  - `demo_parameters.m`: by varying the regularization parameter, the metric function norm, the total variation linear operator and the blurring diameter.
 
 ### User manual
 
-The MRCA/JoDeFu algorithm can be run through `src/jodefu/wrapper_compressed_acquisition.m` with the following script:
+The MRCA model simulated acquisition with JoDeFu algorithm with validation can be run through `src/jodefu/wrapper_compressed_acquisition.m` with the following code snippet:
 ```
 [I_out, I_acq, mask_out, MR] = wrapper_compressed_acquisition('im', im,...
     'ratio', ratio, 'mask', mask, 'test', test, 'inv', inv, 'radius', d_b,...
@@ -60,14 +62,20 @@ where:
   - `{'TV_c', 'norm_l221','none'}` for the JoDeFu v1;
   - `{'TV_u', 'norm_S1l1','none'}` for the JoDeFu v2 with upwind total variation (UTV);
   - `{'TV_s2', 'norm_S1l1','none'}` for the JoDeFu v2 with Shannon total variation (STV) with magnification factor 2;
-  - `{'none', 'norm_l111','CAS_sym8'}` for the LASSO CASSI decoder;
+  - `{'none', 'norm_l111','CAS_sym8'}` for the CASSI LASSO decoder;
 - `d_b` is a float above 1, representing the blurring diameter (e.g. `1` or `1.4`);
 - `lambda` is the normalized regularization parameter (e.g. `0.001`);
 - `iter` is the number of iterations of the JoDeFu algorithm (e.g. `250`);
 - `preproc` is a string that describes the method to evaluate the coefficients for the spatial degradation:
   - `'regravg'`: all coefficients are identical (after the MS is histogram matched to the PAN);
   - `'hism'`: the coefficients are evaluated with linear regression;
-- `output`: is a stringm describing the subfolder to save results under `data\output` (e.g. `'results_test'`)
+- `output`: is a string describing the subfolder to save results under `data\output` (e.g. `'results_test'`)
+
+The script returns:
+- `I_out`: The reconstructed estimated product;
+- `I_acq`: The simulated acquisition;
+- `mask_out`: The mask generated for image formation;
+- `MR`: A struct containing the verification results.
 
 ## License
 
@@ -76,8 +84,8 @@ This project is licensed under the [MIT](LICENSE.md) License - see the LICENSE.m
 ## Acknowledgments
 
 Some included code snippets are inspired or modified from:
-* [Convex optimization](https://lcondat.github.io/software.html)
-* [Open remote sensing pansharpening toolbox](https://openremotesensing.net/knowledgebase/a-critical-comparison-among-pansharpening-algorithms/)
+* [Laurent Condat's convex optimization toolbox](https://lcondat.github.io/software.html)
+* [Gemine Vivone's open remote sensing pansharpening toolbox](https://openremotesensing.net/knowledgebase/a-critical-comparison-among-pansharpening-algorithms/)
 * [BlindFuse](https://github.com/qw245/BlindFuse)
 * [Residual interpolation](http://www.ok.sc.e.titech.ac.jp/res/DM/RI.html)
 * [Alternating Projections](http://www.ece.lsu.edu/ipl/Software.html)
