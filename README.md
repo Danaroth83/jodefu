@@ -5,12 +5,15 @@ Implementation in MATLAB of the "multiresolution compressed acquisition" (MRCA) 
 ## Description
 
 The code is able to:
-- model an optical acquisition device based on color filter arrays (CFAs) and/or multiresolution sensors;
-- reconstruct an image datacube from their acquisition;
+- model an optical acquisition of the MRCA, a device based on color filter arrays (CFAs) and/or multiresolution sensors;
+- reconstruct an image datacube from their acquisition with the JoDeFu, a Bayesian inversion algorithm;
 - compare the results of the estimated products with respect to classical demosaicing and sharpening algorithms.
 
-data/output/
-
+|                                                                  Reference                                                                   |                                                                   MRCA acquisition                                                                    |
+|:--------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+|     ![Reference](data/output/formation_mrca/Washington_4/Washington_4_r2_real_BinaryTreeU_default_regravg_m0_i250_TV_c_norm_l221_GT.png)     |     ![MRCA acquisition](data/output/formation_mrca/Washington_4/Washington_4_r2_real_BinaryTreeU_default_regravg_m0_i250_TV_c_norm_l221_COMP.png)     |     
+|                                                          **Classic reconstruction**                                                          |                                                               **JoDeFu reconstruction**                                                               |
+| ![Classic reconstruction](data/output/formation_classic/Washington_4/Washington_4_r2_real_BinaryTreeU_default_fusdem_RBF_spline_INVBEST.png) | ![JoDeFu reconstruction](data/output/formation_mrca/Washington_4/Washington_4_r2_real_BinaryTreeU_default_regravg_m0_i250_TV_c_norm_l221_INVBEST.png) |
 ## Getting started
 
 ### Dependencies
@@ -30,7 +33,7 @@ The repository contains demo scripts for the experiments provided in the associa
   - `demo_formation_classic.m`:  reconstructed with classic noniterative algorithms;
   - `demo_formation_cassi.m`: reconstructed from CASSI acquisitions both with the CASSI decoder and JoDeFu v1;
   - `demo_formation_software.m`: obtained with software compression encoders/decoders.
-- **Image reconstruction**: Scripts testing various reconstruction algorithm processing a MRCA acquisition:
+- **Image reconstruction**: Scripts testing various reconstruction algorithm processing an MRCA acquisition:
   - `demo_reconstruction_jodefu.m`: reconstructed through JoDeFu v1 and v2.
   - `demo_reconstruction_classic.m`: reconstructed through cascaded classic demosaicing and sharpening algorithms;
 - **Parameters' setting**: Scripts testing the settings of the JoDeFu algorithm:
@@ -93,3 +96,16 @@ Some included code snippets are inspired or modified from:
 
 The provided sample datasets are courtesy of Maxar:
 * [MAXAR sample products](https://resources.maxar.com/product-samples)
+
+## Citation
+If you use this code, please cite:
+
+```
+@article{Picone2022jodefu,
+author = {Picone, Daniele and Condat, Laurent and Dalla Mura, Mauro},
+title = {Joint demosaicing and sharpening of multiresolution compressed acquisitions: {Image} formation and reconstruction methods},
+booktitle = {IEEE Transactions on Computational Imaging [Awaiting review]},
+month = {August},
+year = {2022}
+}
+```
