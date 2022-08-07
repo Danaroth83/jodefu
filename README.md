@@ -1,6 +1,6 @@
 # JoDeFu
 
-Implementation in MATLAB of the "multiresolution compressed acquisition" (MRCA) image formation and "joint demosaicing and fusion" (JoDeFu) image reconstruction methods.
+Implementation in MATLAB of the "multiresolution compressed acquisition" (MRCA) image formation and "joint demosaicing and fusion" (JoDeFu) image reconstruction method.
 
 ## Description
 
@@ -8,6 +8,8 @@ The code is able to:
 - model an optical acquisition of the MRCA, a device based on color filter arrays (CFAs) and/or multiresolution sensors;
 - reconstruct an image datacube from their acquisition with the JoDeFu, a Bayesian inversion algorithm;
 - compare the results of the estimated products with respect to classical demosaicing and sharpening algorithms.
+
+An example of the expected results is given by the images below:
 
 |                                                                  Reference                                                                   |                                                                   MRCA acquisition                                                                    |
 |:--------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -27,7 +29,9 @@ The provided scripts were tested on a licensed **MATLAB 2018b** version on a mac
 
 ### Demo scripts
 
-The repository contains demo scripts for the experiments provided in the associated article, which, for the user convenience, are all located in the `src\main` folder and the results are saved in the `data\output` folder. Specifically we provide:
+The repository contains demo scripts for the experiments provided in the associated article, which, for the user convenience, are all located in the `src\main` folder and the results are saved in the `data\output` folder. 
+The results obtained running these algorithms fully match the ones given in the associated article.
+Specifically, the following tests are available:
 - **Image formation**: Scripts which test the quality of image reconstructed starting from acquisitions modeled through a variety of image formation methods:
   - `demo_formation_mrca.m`:  reconstructed through the JoDeFu v1 algorithm;
   - `demo_formation_classic.m`:  reconstructed with classic noniterative algorithms;
@@ -39,9 +43,9 @@ The repository contains demo scripts for the experiments provided in the associa
 - **Parameters' setting**: Scripts testing the settings of the JoDeFu algorithm:
   - `demo_parameters.m`: by varying the regularization parameter, the metric function norm, the total variation linear operator and the blurring diameter.
 
-### User manual
+### How to use
 
-The MRCA model simulated acquisition with JoDeFu algorithm with validation can be run through `src/jodefu/wrapper_compressed_acquisition.m` with the following code snippet:
+The MRCA model simulated acquisition and JoDeFu algorithm with validation can be run through `src/jodefu/wrapper_compressed_acquisition.m` with the following code snippet:
 ```
 [I_out, I_acq, mask_out, MR] = wrapper_compressed_acquisition('im', im,...
     'ratio', ratio, 'mask', mask, 'test', test, 'inv', inv, 'radius', d_b,...
