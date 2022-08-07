@@ -258,7 +258,7 @@ elseif strcmpi(preproc,'none')
     max_value=I_EXP.DynamicRange;
 end
 
-fprintf('Regression Weights:');
+fprintf('Regression weights:');
 for ii=1:length(weights), fprintf(' %.4f',weights(ii)); end; fprintf('\n');
 
 % I_EXP_norm=(I_EXP_WB-subtract_MS)./divide_MS;
@@ -345,7 +345,7 @@ if flag_vis==1
     figure(fig_idx); subplot(248); a=viewimage_outputonly(x_lambda(:,:,I_MS_LR.Bands_to_display,end)); imshow(a,[],'Border','tight'); title(sprintf('Maximum (\\lambda=%.2E)',lambda_v(end))); imwrite(a,fullfile(output_folder,[filename,'_INVMAX.png']));
     
     if numel(lambda_v)>1
-        figure; hold off; title(sprintf('%s Evaluation',qi_label{idx_metric}));
+        figure; hold off; title(sprintf('%s evaluation',qi_label{idx_metric}));
         ylabel('Value'); xlabel('Regularization parameter (\lambda)');
         plot(lambda_v,MR_out(idx_metric,:));
     end
