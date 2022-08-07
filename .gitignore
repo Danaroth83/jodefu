@@ -7,6 +7,10 @@ projects/*
 
 data/output/*
 !data/output/.gitkeep
+!data/output/formation_mrca/Washington_4/Washington_4_r2_real_BinaryTreeU_default_regravg_m0_i250_TV_c_norm_l221_GT.png
+!data/output/formation_mrca/Washington_4/Washington_4_r2_real_BinaryTreeU_default_regravg_m0_i250_TV_c_norm_l221_COMP.png
+!data/output/formation_mrca/Washington_4/Washington_4_r2_real_BinaryTreeU_default_regravg_m0_i250_TV_c_norm_l221_INVBEST.png
+!data/output/formation_classic/Washington_4/Washington_4_r2_real_BinaryTreeU_default_fusdem_RBF_spline_INVBEST.png
 
 # Ignore images
 *.j2k
