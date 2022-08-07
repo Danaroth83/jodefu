@@ -3,20 +3,20 @@ clearvars; close all;
 current_folder=fileparts(mfilename('fullpath'));
 project_folder=fullfile(current_folder,'..');
 addpath(fullfile(project_folder,'jodefu'));
-
-ratio=2; % Scale ratio
-Nbiter=250; % Number of algorithm iterations
-tol=0; % cost function tolerance (if 0, stop when iteration = Nbiter)
-d_b_choice=1.4; % Blurring diameter for jodefu v2
  
 %% Image formation; CASSI results
 im_tag = 'Washington_4'; % Image tag
 output_folder = 'formation_cassi'; % Output folder
 mask_list = 1; % 1 = CASSI
 formation_list = 2; % 2 = Mosaicing
-reconstruction_list = [0, 7]; % 0 = jodefu v1, 7= CASSI decoding
+reconstruction_list = [0, 7]; % 0 = jodefu v1, 7 = CASSI decoding
 lambda_v = 0.001:0.001:0.003; % Normalized regularization parameter
     
+ratio=2; % Scale ratio
+Nbiter=250; % Number of algorithm iterations
+tol=0; % cost function tolerance (if 0, stop when iteration = Nbiter)
+d_b_choice=1.4; % Blurring diameter for jodefu v2
+
 for kk=mask_list
     if kk==1, mask='CASSI'; preproc='avg'; end
     if kk==2, mask='BinaryTreeU'; preproc='regravg'; end

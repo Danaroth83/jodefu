@@ -4,18 +4,19 @@ current_folder=fileparts(mfilename('fullpath'));
 project_folder=fullfile(current_folder,'..');
 addpath(fullfile(project_folder,'jodefu'));
 
-ratio=2; % Scale ratio
-Nbiter=250; % Number of algorithm iterations
-tol=0; % cost function tolerance (if 0, stop when iteration = Nbiter)
-d_b_choice=1.4; % Blurring diameter for jodefu v2
+%% Image formation - MRCA model
 
-%% Image formation; MRCA results
 im_tag = 'Washington_4'; % Image tag
 output_folder = 'formation_compression'; % Output folder
 mask_list = 2; % 2 = 4-band Uniform binary tree mask
 formation_list = [0, 1, 2]; % 0 = Spa./spe. degradation, 1 = MRCA, 2 = Mosaicing
 reconstruction_list = 0; % 0 = jodefu v1, 4 = jodefu v2 with UTV
 lambda_v = 0.001:0.001:0.002; % Normalized regularization parameter
+
+ratio=2; % Scale ratio
+Nbiter=250; % Number of algorithm iterations
+tol=0; % cost function tolerance (if 0, stop when iteration = Nbiter)
+d_b_choice=1.4; % Blurring diameter for jodefu v2
 
 for kk=mask_list
     if kk==1, mask='CASSI'; preproc='avg'; end

@@ -4,17 +4,17 @@ current_folder=fileparts(mfilename('fullpath'));
 project_folder=fullfile(current_folder,'..');
 addpath(fullfile(project_folder,'jodefu'));
 
-ratio=2; % Scale ratio
-Nbiter=250; % Number of algorithm iterations
-tol=0; % cost function tolerance (if 0, stop when iteration = Nbiter)
-d_b_choice=1.4; % Blurring diameter for jodefu v2
-
-%% Image reconstruction; JoDeFu results
+%% Image reconstruction; JoDeFu algorithm
 output_folder = 'reconstruction_jodefu'; % Output folder
 image_list = 1:3; % Janeiro with 1 = 3 bands, 2 = 4 bands, 3 = 8 bands
 formation_list = 1; % 0 = Spa./spe. degradation, 1 = MRCA, 2 = Mosaicing
 reconstruction_list = [0, 4, 8]; % 0 = jodefu v1, 4&8 = jodefu v2 with UTV
 lambda_v = 0.001:0.001:0.002; % Normalized regularization parameter
+
+ratio=2; % Scale ratio
+Nbiter=250; % Number of algorithm iterations
+tol=0; % cost function tolerance (if 0, stop when iteration = Nbiter)
+d_b_choice=1.4; % Blurring diameter for jodefu v2
 
 for kk=image_list
     preproc='regravg';

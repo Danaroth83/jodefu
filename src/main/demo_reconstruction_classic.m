@@ -4,14 +4,14 @@ current_folder=fileparts(mfilename('fullpath'));
 project_folder=fullfile(current_folder,'..');
 addpath(fullfile(project_folder,'jodefu'));
 
-ratio=2; % Scale ratio
-interpolation = 'RBF_spline'; % PAN interpolation
-fusion_list={'EXP','GSA','BDSD','ATWT','MTF-GLP-HPM','MTF-GLP-CBD'}; % Fusion methods
-
-%% Image reconstruction; JoDeFu results
+%% Image reconstruction - Classic algorithms
 output_folder = 'reconstruction_classic'; % Output folder
 image_list = 1:3; % Janeiro with 1 = 3 bands, 2 = 4 bands, 3 = 8 bands
 formation_list = 1; % 0 = Spa./spe. degradation, 1 = MRCA, 2 = Mosaicing 
+
+ratio=2; % Scale ratio
+interpolation = 'RBF_spline'; % PAN interpolation
+fusion_list={'EXP','GSA','BDSD','ATWT','MTF-GLP-HPM','MTF-GLP-CBD'}; % Fusion methods
 
 for kk=image_list
     preproc='regravg';

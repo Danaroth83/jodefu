@@ -4,38 +4,30 @@ current_folder=fileparts(mfilename('fullpath'));
 project_folder=fullfile(current_folder,'..');
 addpath(fullfile(project_folder,'jodefu'));
 
-output_folder = 'formation_classic';
+%% Image formation - Classic models
 
-% im_tag='Washington_cut256_4'; mask='period'; demosaic_list={'WB','ID','IID','SD','ISD'};
-% im_tag='Washington_cut256_RGB'; mask='Bayer'; demosaic_list={'WB','ID','IID','ARI2','MLRI2','AP','MSG'};
-% im_tag='Janeiro_cut256_RGB'; mask='Bayer'; demosaic_list={'WB','ID','IID','ARI2','MLRI2','AP','MSG'};
-% im_tag='Janeiro_cut256_4'; mask='period'; demosaic_list={'WB','ID','IID','SD','ISD'};
-% im_tag='Janeiro_cut256_all'; mask='BinaryTreeU'; demosaic_list={'WB','ID','IID','SD','ISD'};
-% im_tag='Stockholm_cut256_all'; mask='BinaryTreeU'; demosaic_list={'WB','ID','IID','SD','ISD'};
-im_tag='Washington_4'; mask='BinaryTreeU'; demosaic_list={'WB','ID','IID','SD','ISD'};
-% im_tag='Janeiro_cut256_all'; mask='BinaryTreeU'; demosaic_list={'WB','ID','IID','SD','ISD'};
+output_folder = 'formation_classic'; % Output folder
+ratio=2; % Scale ratio
+im_tag = 'Washington_4'; % Image tag
+mask = 'BinaryTreeU'; % Mask label
+interpolation='RBF_spline';    % PAN interpolation
+demosaic_list = {'WB', 'ID', 'IID', 'SD', 'ISD'}; % Demosaic method list
+fusion_list={'EXP','GSA','BDSD','ATWT','MTF-GLP-HPM','MTF-GLP-CBD'}; % Fusion list
+formation_list = 1:3; % 1=Spa./spe. degradation, 2=MRCA, 3=Mosaicing
 
-ratio=2;
-
-interpolation='RBF_spline';    % interpolation='WB';
-
-% fusion_list={'EXP','GSA','BDSD','ATWT','MTF-GLP-HPM','MTF-GLP-CBD','BayesNaive'};
-fusion_list={'EXP','GSA','BDSD','ATWT','MTF-GLP-HPM','MTF-GLP-CBD'};
-%fusion_list={'EXP','PCA','GSA','BDSD','ATWT','MTF-GLP-HPM','MTF-GLP-HPM','CNMF','BayesNaive'};
-
-testtype={'default','msonly','nomask'}; % testtype='nodegrad';
-tests_sim = 1; % 1= Non simulated PAN, 2 = PAN simulated from GT (SNR = 25 dB)
-
-for jj=tests_sim
-	if jj==1, sim_label=0; SNR_db=[]; end
-	if jj==2, sim_label=1; SNR_db=25; end
+for jj=formation_list
+    sim_label=0; SNR_db=[];
+    if jj==1, testtype = 'nomask'; end
+    if jj==2, testtype = 'default'; end
+    if jj==3, testtype = 'msonly'; end
+    if jj==4, testtype = 'default'; sim_label=1; SNR_db=25; end
 	
 	for ii=1:numel(testtype)
 	
 	[I_out,I_acq,mask_out,MR]=wrapper_classic('im',im_tag,...
 		'ratio',ratio,'mask',mask,'interpolation',interpolation,...
 		'fusion',fusion_list,'demosaic',demosaic_list,...
-		'test',testtype{ii},'sim',sim_label,'SNR',SNR_db,...
+		'test',testtype,'sim',sim_label,'SNR',SNR_db,...
         'output', output_folder);
 		
 	end
