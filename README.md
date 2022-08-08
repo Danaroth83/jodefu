@@ -95,8 +95,9 @@ Some included code snippets are inspired or modified from:
 * [Gemine Vivone's open remote sensing pansharpening toolbox](https://openremotesensing.net/knowledgebase/a-critical-comparison-among-pansharpening-algorithms/)
 * [BlindFuse](https://github.com/qw245/BlindFuse)
 * [Residual interpolation](http://www.ok.sc.e.titech.ac.jp/res/DM/RI.html)
-* [Alternating Projections](http://www.ece.lsu.edu/ipl/Software.html)
-* [Multiscale Gradients-Based Color Filter Array Interpolation](https://sites.google.com/site/ibrahimepekkucuksen/publications)
+* [Alternating projections](http://www.ece.lsu.edu/ipl/Software.html)
+* [Multiscale gradients-based color filter array interpolation](https://sites.google.com/site/ibrahimepekkucuksen/publications)
+* [Shannon total variation](https://helios2.mi.parisdescartes.fr/~rabergel/)
 
 The provided sample datasets are courtesy of Maxar:
 * [Maxar sample products](https://resources.maxar.com/product-samples)
@@ -107,7 +108,7 @@ If you use this code, please cite:
 ```
 @article{Picone2022jodefu,
 author = {Picone, Daniele and Condat, Laurent and Dalla Mura, Mauro},
-title = {Joint demosaicing and sharpening of multiresolution compressed acquisitions: {Image} formation and reconstruction methods},
+title = {Joint demosaicing and fusion of multiresolution compressed acquisitions: {Image} formation and reconstruction methods},
 booktitle = {IEEE Transactions on Computational Imaging [Awaiting review]},
 month = {August},
 year = {2022}
