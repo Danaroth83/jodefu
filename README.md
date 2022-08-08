@@ -99,7 +99,7 @@ Some included code snippets are inspired or modified from:
 * [Multiscale Gradients-Based Color Filter Array Interpolation](https://sites.google.com/site/ibrahimepekkucuksen/publications)
 
 The provided sample datasets are courtesy of Maxar:
-* [MAXAR sample products](https://resources.maxar.com/product-samples)
+* [Maxar sample products](https://resources.maxar.com/product-samples)
 
 ## Citation
 If you use this code, please cite:
