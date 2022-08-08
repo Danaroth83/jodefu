@@ -1,8 +1,0 @@
-Alternating Projections:
-http://www.ece.lsu.edu/ipl/Software.html
-
-Residual interpolation:
-http://www.ok.sc.e.titech.ac.jp/res/DM/RI.html
-
-MSG:
-https://sites.google.com/site/ibrahimepekkucuksen/publications

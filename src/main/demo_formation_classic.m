@@ -22,13 +22,9 @@ for jj=formation_list
     if jj==3, testtype = 'msonly'; end
     if jj==4, testtype = 'default'; sim_label=1; SNR_db=25; end
 	
-	for ii=1:numel(testtype)
-	
 	[I_out,I_acq,mask_out,MR]=wrapper_classic('im',im_tag,...
 		'ratio',ratio,'mask',mask,'interpolation',interpolation,...
 		'fusion',fusion_list,'demosaic',demosaic_list,...
 		'test',testtype,'sim',sim_label,'SNR',SNR_db,...
         'output', output_folder);
-		
-	end
 end

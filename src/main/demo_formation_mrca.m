@@ -9,7 +9,7 @@ addpath(fullfile(project_folder,'jodefu'));
 im_tag = 'Washington_4'; % Image tag
 output_folder = 'formation_mrca'; % Output folder
 mask_list = 2; % 2 = 4-band Uniform binary tree mask
-formation_list = [0, 1, 2]; % 0 = Spa./spe. degradation, 1 = MRCA, 2 = Mosaicing
+formation_list = 0:2; % 0 = Spa./spe. degradation, 1 = MRCA, 2 = Mosaicing
 reconstruction_list = 0; % 0 = jodefu v1, 4 = jodefu v2 with UTV
 lambda_v = 0.001:0.001:0.002; % Normalized regularization parameter
 
