@@ -40,7 +40,7 @@ Specifically, the following tests are available:
 - **Image reconstruction**: Scripts testing various reconstruction algorithm processing an MRCA acquisition:
   - `demo_reconstruction_jodefu.m`: reconstructed through JoDeFu v1 and v2.
   - `demo_reconstruction_classic.m`: reconstructed through cascaded classic demosaicing and sharpening algorithms;
-- **Parameters' setting**: Scripts testing the settings of the JoDeFu algorithm:
+- **Setting of parameters**: Scripts testing the settings of the JoDeFu algorithm:
   - `demo_parameters.m`: by varying the regularization parameter, the metric function norm, the total variation linear operator and the blurring diameter.
 
 ### How to use
