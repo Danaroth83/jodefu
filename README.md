@@ -11,11 +11,11 @@ The code is able to:
 
 An example of the expected results is given by the images below:
 
-|                                                                  Reference                                                                   |                                                                   MRCA acquisition                                                                    |
-|:--------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
-|     ![Reference](data/output/formation_mrca/Washington_4/Washington_4_r2_real_BinaryTreeU_default_regravg_m0_i250_TV_c_norm_l221_GT.png)     |     ![MRCA acquisition](data/output/formation_mrca/Washington_4/Washington_4_r2_real_BinaryTreeU_default_regravg_m0_i250_TV_c_norm_l221_COMP.png)     |     
-|                                                          **Classic reconstruction**                                                          |                                                               **JoDeFu reconstruction**                                                               |
-| ![Classic reconstruction](data/output/formation_classic/Washington_4/Washington_4_r2_real_BinaryTreeU_default_fusdem_RBF_spline_INVBEST.png) | ![JoDeFu reconstruction](data/output/formation_mrca/Washington_4/Washington_4_r2_real_BinaryTreeU_default_regravg_m0_i250_TV_c_norm_l221_INVBEST.png) |
+|                                                                         Reference                                                                          |                                                                          MRCA acquisition                                                                           |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|     ![Reference](data/output/formation_mrca/Washington_cut256_4/Washington_cut256_4_r2_real_BinaryTreeU_default_regravg_m0_i250_TV_c_norm_l221_GT.png)     |     ![MRCA acquisition](data/output/formation_mrca/Washington_cut256_4/Washington_cut256_4_r2_real_BinaryTreeU_default_regravg_m0_i250_TV_c_norm_l221_COMP.png)     |     
+|                                                                 **Classic reconstruction**                                                                 |                                                                      **JoDeFu reconstruction**                                                                      |
+| ![Classic reconstruction](data/output/formation_classic/Washington_cut256_4/Washington_cut256_4_r2_real_BinaryTreeU_default_fusdem_RBF_spline_INVBEST.png) | ![JoDeFu reconstruction](data/output/formation_mrca/Washington_cut256_4/Washington_cut256_4_r2_real_BinaryTreeU_default_regravg_m0_i250_TV_c_norm_l221_INVBEST.png) |
 ## Getting started
 
 ### Dependencies
