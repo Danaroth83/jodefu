@@ -1,8 +1,0 @@
-Radial Basis Function Toolbox:
-https://openresearchsoftware.metajnl.com/articles/10.5334/jors.131/
-https://github.com/scottsarra/Matlab-RBF-Toolbox
-
-Kriging Toolbox:
-https://fr.mathworks.com/matlabcentral/fileexchange/29025-ordinary-kriging
-https://fr.mathworks.com/matlabcentral/fileexchange/20355-experimental-semi-variogram
-https://fr.mathworks.com/matlabcentral/fileexchange/25948-variogramfit

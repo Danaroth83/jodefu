@@ -100,6 +100,7 @@ Some included code snippets are inspired or modified from:
 * [Alternating projections](http://www.ece.lsu.edu/ipl/Software.html)
 * [Multiscale gradients-based color filter array interpolation](https://sites.google.com/site/ibrahimepekkucuksen/publications)
 * [Shannon total variation](https://helios2.mi.parisdescartes.fr/~rabergel/)
+* [Scott Sarra's radial basis function toolbox](https://openresearchsoftware.metajnl.com/articles/10.5334/jors.131/)
 
 The provided sample datasets are courtesy of Maxar:
 * [Maxar sample products](https://resources.maxar.com/product-samples)
