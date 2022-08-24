@@ -1,6 +1,6 @@
 # JoDeFu
 
-Implementation in MATLAB of the "multiresolution compressed acquisition" (MRCA) image formation and "joint demosaicing and fusion" (JoDeFu) image reconstruction method.
+Implementation in MATLAB of the *multiresolution compressed acquisition* (MRCA) image formation and *joint demosaicing and fusion* (JoDeFu) image reconstruction method.
 
 ## Description
 
@@ -27,7 +27,7 @@ The script requires the following MATLAB toolboxes:
 - Image Processing Toolbox
 - Wavelet Toolbox
 
-The provided scripts were tested on a licensed **MATLAB 2018b** version on a machine running **Window 10**.
+The provided scripts were tested on a licensed *MATLAB 2018b* version on a machine running *Window 10*.
 
 ### Demo scripts
 
@@ -65,7 +65,7 @@ where:
   - `'CASSI'`: for a CASSI encoder;
 - `test` is a label string to describe the MRCA framework:
   - `'default'`: for the full MRCA;
-  - `'nomask'`: for the spatial/spectral degradation;
+  - `'nomask'`: for the multiresolution sensing;
   - `'msonly'`: for the mosaicing;
 - `inv` is a struct with information about the image formation:
   - `{'TV_c', 'norm_l221','none'}` for the JoDeFu v1;
@@ -109,11 +109,12 @@ The provided sample datasets are courtesy of Maxar:
 If you use this code, please cite:
 
 ```
-@article{Picone2022jodefu,
+@article{picone2022jodefu,
 author = {Picone, Daniele and Condat, Laurent and Dalla Mura, Mauro},
 title = {Joint demosaicing and fusion of multiresolution compressed acquisitions: {Image} formation and reconstruction methods},
-booktitle = {IEEE Transactions on Computational Imaging [Awaiting review]},
-month = {August},
+booktitle = {IEEE Transactions on Computational Imaging},
+note = {Under review.}
+month = {#aug#},
 year = {2022}
 }
 ```
