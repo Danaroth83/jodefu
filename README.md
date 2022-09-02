@@ -2,6 +2,8 @@
 
 Implementation in MATLAB of the *multiresolution compressed acquisition* (MRCA) image formation and *joint demosaicing and fusion* (JoDeFu) image reconstruction method.
 
+[![DOI](https://zenodo.org/badge/521571212.svg)](https://zenodo.org/badge/latestdoi/521571212)
+
 ## Description
 
 The code is able to:
