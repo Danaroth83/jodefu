@@ -114,9 +114,11 @@ If you use this code, please cite:
 @article{picone2022jodefu,
 author = {Picone, Daniele and Dalla Mura, Mauro and Condat, Laurent},
 title = {Joint demosaicing and fusion of multiresolution compressed acquisitions: {Image} formation and reconstruction methods},
-booktitle = {IEEE Transactions on Computational Imaging},
-note = {Under review.}
+booktitle = {arXiv},
+note = {Submitted to IEEE Transactions on Computational Imaging (under review).}
 month = sep,
-year = {2022}
+year = {2022},
+doi = {10.48550/ARXIV.2209.01455},
+url = {https://arxiv.org/abs/2209.01455},
 }
 ```
