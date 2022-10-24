@@ -115,7 +115,7 @@ If you use this code, please cite:
 author = {Picone, Daniele and Dalla Mura, Mauro and Condat, Laurent},
 title = {Joint demosaicing and fusion of multiresolution compressed acquisitions: {Image} formation and reconstruction methods},
 booktitle = {arXiv},
-note = {Submitted to IEEE Transactions on Computational Imaging (under review).}
+note = {Under review.}
 month = sep,
 year = {2022},
 doi = {10.48550/ARXIV.2209.01455},
