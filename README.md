@@ -33,7 +33,7 @@ The provided scripts were tested on a licensed *MATLAB 2018b* version on a machi
 
 ### Demo scripts
 
-The repository contains demo scripts for the experiments provided in the associated article, which, for the user convenience, are all located in the `src\main` folder and the results are saved in the `data\output` folder. 
+The repository contains demo scripts for the experiments provided in the associated article, which, for the user convenience, are all located in the `src\main` folder and the results are saved in the `data\output` folder.
 The results obtained running these algorithms fully match the ones given in the associated article.
 Specifically, the following tests are available:
 - **Image formation**: Scripts which test the quality of image reconstructed starting from acquisitions modeled through a variety of image formation methods:
@@ -115,7 +115,7 @@ If you use this code, please cite:
 author = {Picone, Daniele and Dalla Mura, Mauro and Condat, Laurent},
 title = {Joint demosaicing and fusion of multiresolution compressed acquisitions: {Image} formation and reconstruction methods},
 booktitle = {arXiv},
-note = {Under review.}
+note = {Under review.},
 month = sep,
 year = {2022},
 doi = {10.48550/ARXIV.2209.01455},
