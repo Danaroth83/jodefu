@@ -7,6 +7,7 @@ addpath(fullfile(project_folder,'jodefu'));
 %% Image reconstruction; JoDeFu algorithm
 output_folder = 'reconstruction_jodefu'; % Output folder
 image_list = 1:3; % Janeiro with 1 = 3 bands, 2 = 4 bands, 3 = 8 bands
+% image_list = 4:6; % Stockholm with 1 = 3 bands, 2 = 4 bands, 3 = 8 bands
 formation_list = 1; % 0 = Spa./spe. degradation, 1 = MRCA, 2 = Mosaicing
 reconstruction_list = [0, 4, 8]; % 0 = jodefu v1, 4&8 = jodefu v2 with UTV
 lambda_v = 0.001:0.001:0.002; % Normalized regularization parameter
@@ -21,6 +22,9 @@ for kk=image_list
     if kk==1, im_tag = 'Janeiro_3'; mask = 'Bayer'; end
     if kk==2, im_tag = 'Janeiro_4'; mask = 'BinaryTreeU'; end
     if kk==3, im_tag = 'Janeiro_8'; mask = 'BinaryTreeU'; end
+    if kk==4, im_tag = 'Stockholm_3'; mask = 'Bayer'; end
+    if kk==5, im_tag = 'Stockholm_4'; mask = 'BinaryTreeU'; end
+    if kk==6, im_tag = 'Stockholm_8'; mask = 'BinaryTreeU'; end
 
     for ii=formation_list
         sim_string=0; SNR = [];

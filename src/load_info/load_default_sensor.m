@@ -27,7 +27,7 @@ elseif strncmpi(place,'Rome',4) ||strncmpi(place,'Rio',3) || strncmpi(place,'Sto
 elseif strncmpi(place,'Tripoli',7) || strncmpi(place,'Janeiro',7)
     sensor_lq='WV3';
     sensor_hq='WV3';
-elseif strncmpi(place,'China',5)
+elseif strncmpi(place,'China',5) || strncmpi(place, 'Fields', 6)
     sensor_lq='IKONOS';
     sensor_hq='IKONOS';
 elseif strncmpi(place,'Hobart',6)
