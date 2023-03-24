@@ -33,7 +33,7 @@ The provided scripts were tested on a licensed *MATLAB 2018b* version on a machi
 
 ### Demo scripts
 
-- Fully reproducible run (Warning: May take several hours.): `matlab -nodisplay code/main.m`
+- Fully reproducible run (Warning: May take several hours.): `matlab -nodisplay code/main/main.m`
 
 The repository contains demo scripts for the experiments provided in the associated article, which, for the user convenience, are all located in the `src\main` folder and the results are saved in the `results` folder.
 The results obtained running these algorithms fully match the ones given in the associated article.
