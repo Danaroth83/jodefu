@@ -1,4 +1,10 @@
-clearvars; close all;
+function demo_formation_classic(varargin)
+
+if numel(varargin) >= 1, im_tag = varargin{1}; else, im_tag = 'Washington_4'; end
+
+%clearvars; 
+close all;
+fprintf('==== Image formation tests (Classic methods) ====\n');
 
 current_folder=fileparts(mfilename('fullpath'));
 project_folder=fullfile(current_folder,'..');
@@ -8,7 +14,7 @@ addpath(fullfile(project_folder,'jodefu'));
 
 output_folder = 'formation_classic'; % Output folder
 ratio=2; % Scale ratio
-im_tag = 'Washington_4'; % Image tag
+% im_tag = 'Washington_4'; % Image tag
 mask = 'BinaryTreeU'; % Mask label
 interpolation='RBF_spline';    % PAN interpolation
 demosaic_list = {'WB', 'ID', 'IID', 'SD', 'ISD'}; % Demosaic method list

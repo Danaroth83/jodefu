@@ -33,7 +33,9 @@ The provided scripts were tested on a licensed *MATLAB 2018b* version on a machi
 
 ### Demo scripts
 
-The repository contains demo scripts for the experiments provided in the associated article, which, for the user convenience, are all located in the `src\main` folder and the results are saved in the `data\output` folder.
+- Fully reproducible run (Warning: May take several hours.): `matlab -nodisplay code/main.m`
+
+The repository contains demo scripts for the experiments provided in the associated article, which, for the user convenience, are all located in the `src\main` folder and the results are saved in the `results` folder.
 The results obtained running these algorithms fully match the ones given in the associated article.
 Specifically, the following tests are available:
 - **Image formation**: Scripts which test the quality of image reconstructed starting from acquisitions modeled through a variety of image formation methods:
@@ -49,7 +51,7 @@ Specifically, the following tests are available:
 
 ### How to use
 
-The MRCA model simulated acquisition and JoDeFu algorithm with validation can be run through `src/jodefu/wrapper_compressed_acquisition.m` with the following code snippet:
+The MRCA model simulated acquisition and JoDeFu algorithm with validation can be run through `code/jodefu/wrapper_compressed_acquisition.m` with the following code snippet:
 ```
 [I_out, I_acq, mask_out, MR] = wrapper_compressed_acquisition('im', im,...
     'ratio', ratio, 'mask', mask, 'test', test, 'inv', inv, 'radius', d_b,...
@@ -113,7 +115,7 @@ If you use this code, please cite:
 ```
 @article{picone2022jodefu,
 author = {Picone, Daniele and Dalla Mura, Mauro and Condat, Laurent},
-title = {Joint demosaicing and fusion of multiresolution compressed acquisitions: {Image} formation and reconstruction methods},
+title = {Joint demosaicing and fusion of multiresolution coded acquisitions: {A} unified image formation and reconstruction method},
 booktitle = {arXiv},
 note = {Under review.},
 month = sep,

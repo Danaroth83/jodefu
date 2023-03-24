@@ -32,7 +32,7 @@
 function I_hat = demosaic_algorithm_ID(I_MSFA,cfa,type,period,central_wv)
 
     current_folder=fileparts(mfilename('fullpath'));
-    addpath(fullfile(current_folder,'..','..','Interpolation'));
+    addpath(fullfile(current_folder,'..','..','interpolation'));
 
     if isfield(cfa,'data'),cfa=cfa.data; end
     if nargin<=4 && isfield(I_MSFA,'wavelength'), central_wv=I_MSFA.wavelength; end

@@ -1,11 +1,17 @@
-clearvars; close all;
+function demo_formation_cassi(varargin)
+
+if numel(varargin) >= 1, im_tag = varargin{1}; else, im_tag = 'Washington_4'; end
+
+% clearvars; 
+close all;
+fprintf('==== Image formation tests (CASSI) ====\n');
 
 current_folder=fileparts(mfilename('fullpath'));
 project_folder=fullfile(current_folder,'..');
 addpath(fullfile(project_folder,'jodefu'));
  
 %% Image formation; CASSI results
-im_tag = 'Washington_4'; % Image tag
+% im_tag = 'Washington_4'; % Image tag
 output_folder = 'formation_cassi'; % Output folder
 mask_list = 1; % 1 = CASSI
 formation_list = 2; % 2 = Mosaicing

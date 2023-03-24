@@ -33,7 +33,7 @@ function [I_out,I_acq,mask,MR]=wrapper_classic(varargin)
 
 %% Support folders' paths
 current_folder=fileparts(mfilename('fullpath'));
-output_folder=fullfile(current_folder,'..','..','data','output');
+output_folder=fullfile(current_folder,'..','..','results');
 project_folder=fullfile(current_folder,'..');
 addpath(fullfile(project_folder,'load_info'),...
         fullfile(project_folder,'demosaic'),...

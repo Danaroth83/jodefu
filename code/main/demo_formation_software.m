@@ -1,4 +1,9 @@
-close all; clearvars;
+function demo_formation_software(varargin)
+
+if numel(varargin) >= 1, im_tag = varargin{1}; else, im_tag = 'Washington_4'; end
+
+% clearvars;
+close all;
 
 current_folder=fileparts(mfilename('fullpath'));
 project_folder=fullfile(current_folder,'..');
@@ -6,7 +11,7 @@ addpath(fullfile(project_folder,'jodefu'));
 
 %% Image formation - Software compression
 
-im_tag = 'Washington_4'; % Image tag
+% im_tag = 'Washington_4'; % Image tag
 compression_ratio = 0.25; % Compression ratio
 output_folder = 'formation_software'; % Output folder
 methods_list = {'BIN', 'JPEG'}; % Software compression methods

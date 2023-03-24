@@ -1,4 +1,10 @@
-clearvars; close all;
+function demo_reconstruction_classic(varargin)
+
+if numel(varargin) >= 1, im_tag = varargin{1}; else, im_tag = 'Janeiro'; end
+
+% clearvars; 
+close all;
+fprintf('== Image reconstruction tests (Classic methods) ==\n');
 
 current_folder=fileparts(mfilename('fullpath'));
 project_folder=fullfile(current_folder,'..');
@@ -6,7 +12,13 @@ addpath(fullfile(project_folder,'jodefu'));
 
 %% Image reconstruction - Classic algorithms
 output_folder = 'reconstruction_classic'; % Output folder
-image_list = 1:3; % Janeiro with 1 = 3 bands, 2 = 4 bands, 3 = 8 bands
+if strcmpi(im_tag, 'Janeiro')
+    image_list = 1:3; % Janeiro with 1 = 3 bands, 2 = 4 bands, 3 = 8 bands
+elseif strcmpi(im_tag, 'Stockholm')
+    image_list = 4:6; % Stockholm with 1 = 3 bands, 2 = 4 bands, 3 = 8 bands
+else
+    error('Available datasets: [Janeiro, Stockholm]');
+end
 formation_list = 1; % 0 = Spa./spe. degradation, 1 = MRCA, 2 = Mosaicing 
 
 ratio=2; % Scale ratio
@@ -18,6 +30,9 @@ for kk=image_list
     if kk==1, im_tag = 'Janeiro_3'; mask = 'Bayer'; end
     if kk==2, im_tag = 'Janeiro_4'; mask = 'BinaryTreeU'; end
     if kk==3, im_tag = 'Janeiro_8'; mask = 'BinaryTreeU'; end
+    if kk==4, im_tag = 'Janeiro_3'; mask = 'Bayer'; end
+    if kk==5, im_tag = 'Janeiro_4'; mask = 'BinaryTreeU'; end
+    if kk==6, im_tag = 'Janeiro_8'; mask = 'BinaryTreeU'; end
     
     if kk==1
         demosaic_list = {'WB', 'ID', 'IID', 'ARI2', 'MLRI2', 'AP', 'MSG'};

@@ -1,11 +1,17 @@
-clearvars; close all;
+function demo_parameters(varargin)
+
+if numel(varargin) >= 1, im_tag = varargin{1}; else, im_tag = 'Beijing_4'; end
+
+% clearvars; 
+close all;
+fprintf('================ Parametric tests ================\n');
 
 current_folder=fileparts(mfilename('fullpath'));
 project_folder=fullfile(current_folder,'..');
 addpath(fullfile(project_folder,'jodefu'));
 
 %% Parameters settings - JoDeFu results
-im_tag = 'Beijing_4'; % Image tag
+% im_tag = 'Beijing_4'; % Image tag
 mask = 'BinaryTreeU'; % Mask label
 output_folder = 'parameters'; % Output folder
 formation_list = 1; % 0 = Spa./spe. degradation, 1 = MRCA, 2 = Mosaicing

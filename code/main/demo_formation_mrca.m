@@ -1,15 +1,23 @@
-clearvars; close all;
+function demo_formation_mrca(varargin)
+
+if numel(varargin) >= 1, im_tag = varargin{1}; else, im_tag = 'Washington_4'; end
+
+% clearvars; 
+close all;
+fprintf('========= Image formation tests (MRCA) ==========\n');
 
 current_folder=fileparts(mfilename('fullpath'));
 project_folder=fullfile(current_folder,'..');
 addpath(fullfile(project_folder,'jodefu'));
 
-%% Image reconstruction; JoDeFu algorithm
-output_folder = 'reconstruction_jodefu'; % Output folder
-image_list = 1:3; % Janeiro with 1 = 3 bands, 2 = 4 bands, 3 = 8 bands
-% image_list = 4:6; % Stockholm with 1 = 3 bands, 2 = 4 bands, 3 = 8 bands
-formation_list = 1; % 0 = Spa./spe. degradation, 1 = MRCA, 2 = Mosaicing
-reconstruction_list = [0, 4, 8]; % 0 = jodefu v1, 4&8 = jodefu v2 with UTV
+%% Image formation - MRCA model
+
+% im_tag = 'Washington_4'; % Image tag
+% im_tag = 'Fields';
+output_folder = 'formation_mrca'; % Output folder
+mask_list = 2; % 2 = 4-band Uniform binary tree mask
+formation_list = 0:2; % 0 = Spa./spe. degradation, 1 = MRCA, 2 = Mosaicing
+reconstruction_list = 0; % 0 = jodefu v1, 4 = jodefu v2 with UTV
 lambda_v = 0.001:0.001:0.002; % Normalized regularization parameter
 
 ratio=2; % Scale ratio
@@ -17,14 +25,9 @@ Nbiter=250; % Number of algorithm iterations
 tol=0; % cost function tolerance (if 0, stop when iteration = Nbiter)
 d_b_choice=1.4; % Blurring diameter for jodefu v2
 
-for kk=image_list
-    preproc='regravg';
-    if kk==1, im_tag = 'Janeiro_3'; mask = 'Bayer'; end
-    if kk==2, im_tag = 'Janeiro_4'; mask = 'BinaryTreeU'; end
-    if kk==3, im_tag = 'Janeiro_8'; mask = 'BinaryTreeU'; end
-    if kk==4, im_tag = 'Stockholm_3'; mask = 'Bayer'; end
-    if kk==5, im_tag = 'Stockholm_4'; mask = 'BinaryTreeU'; end
-    if kk==6, im_tag = 'Stockholm_8'; mask = 'BinaryTreeU'; end
+for kk=mask_list
+    if kk==1, mask='CASSI'; preproc='avg'; end
+    if kk==2, mask='BinaryTreeU'; preproc='regravg'; end
 
     for ii=formation_list
         sim_string=0; SNR = [];
@@ -41,8 +44,7 @@ for kk=image_list
             if jj==4, inversion={'TV_u','norm_S1l1','none'}; d_b = d_b_choice; end
             if jj==5, inversion={'TV_s2','norm_l221','none'}; d_b = d_b_choice; end
             if jj==6, inversion={'TV_s2','norm_S1l1','none'}; d_b = d_b_choice; end
-            if jj==7, inversion={'none','norm_l111','CAS8_sym8'}; d_b = d_b_choice; end
-            if jj==8, inversion={'TV_u','norm_S1l1','none'}; d_b = []; end
+            if jj==7, inversion={'none','norm_l111','CAS_sym8'}; d_b = d_b_choice; end
 
             fprintf('Mask: %s, Testtype: %s, Sim: %d, Parameters setup: %d, Radius: %.2f\n', mask, testtype, sim_string, jj, d_b);
 
