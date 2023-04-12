@@ -113,14 +113,16 @@ The provided sample datasets are courtesy of Maxar:
 If you use this code, please cite:
 
 ```
-@article{picone2022jodefu,
-author = {Picone, Daniele and Dalla Mura, Mauro and Condat, Laurent},
-title = {Joint demosaicing and fusion of multiresolution coded acquisitions: {A} unified image formation and reconstruction method},
-booktitle = {arXiv},
-note = {Under review.},
-month = sep,
-year = {2022},
-doi = {10.48550/ARXIV.2209.01455},
-url = {https://arxiv.org/abs/2209.01455},
+@article{picone23jodefu,
+  author    = {Picone, Daniele and Dalla Mura, Mauro and Condat, Laurent},
+  journal   = {IEEE Transactions on Computational Imaging},
+  title     = {Joint demosaicing and fusion of multiresolution coded acquisitions: {A} unified image formation and reconstruction method},
+  year      = {2023},
+  month     = mar,
+  pages     = {335--349},
+  volume    = {9},
+  doi       = {10.1109/tci.2023.3261503},
+  publisher = {Institute of Electrical and Electronics Engineers ({IEEE})},
 }
+
 ```
